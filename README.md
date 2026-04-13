@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  🎉 Celebra
+  <span style="color:#FF477E">Celebra ✦</span>
   <br>
 </h1>
 
@@ -28,51 +28,51 @@
 
 ---
 
-## 🎉 Sobre
+## Sobre
 
 **Celebra** é uma plataforma SaaS de planejamento de eventos focada em casamentos. Conecta noivos, fornecedores e espaços em um único lugar, com ferramentas poderosas para tornar cada celebração inesquecível.
 
 A plataforma oferece desde descoberta de espaços e serviços até uma **assistente de IA integrada (Celi)**, editor visual de página do evento, lista de presentes com scraping automático e confirmação de presença — tudo em tempo real com uma experiência reativa e moderna.
 
-> 🌐 **Demo ao vivo:** [eventos.eflow.space](https://eventos.eflow.space)
+> **Demo ao vivo:** [eventos.eflow.space](https://eventos.eflow.space)
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-### 👤 Para Noivos / Clientes
-
-| Funcionalidade | Descrição |
-|---|---|
-| 🏠 **Home** | Landing page com apresentação dos espaços e serviços disponíveis |
-| 🏛️ **Espaços** | Listagem e detalhes de espaços para eventos com galeria, capacidade, localização e preço |
-| 🎨 **Serviços** | Catálogo de fornecedores por categoria (foto, buffet, flores, DJ, etc.) |
-| 📆 **Meus Eventos** | Criação e gerenciamento de eventos com tipo, data, orçamento e número de convidados |
-| 🤖 **Celi — IA Planner** | Assistente inteligente (Google Gemini 2.0 Flash) para planejar eventos via chat com sugestões contextuais e ações rápidas |
-| 🎁 **Lista de Presentes** | Gerenciamento de lista com scraping automático de URL (Amazon, Americanas, etc.) para preencher item, imagem e preço |
-| 🌐 **Page Builder** | Editor visual de página pública do evento com temas, cores e blocos customizáveis |
-| 💌 **Página do Evento** | Landing page pública e personalizável do evento para compartilhar com convidados |
-| ✅ **RSVP** | Confirmação de presença dos convidados diretamente na página do evento |
-
-### 🏪 Para Fornecedores
+### Para Noivos / Clientes
 
 | Funcionalidade | Descrição |
 |---|---|
-| 📝 **Perfil do Fornecedor** | Edição de perfil com foto, bio, localização e dados de contato |
-| 🛎️ **Meus Serviços** | Cadastro e gestão de serviços com múltiplas imagens, descrição e preço |
-| 📩 **Solicitações** | Visualização e gestão de solicitações de contato recebidas de clientes |
+| **Home** | Landing page com apresentação dos espaços e serviços disponíveis |
+| **Espaços** | Listagem e detalhes de espaços para eventos com galeria, capacidade, localização e preço |
+| **Serviços** | Catálogo de fornecedores por categoria (foto, buffet, flores, DJ, etc.) |
+| **Meus Eventos** | Criação e gerenciamento de eventos com tipo, data, orçamento e número de convidados |
+| **Celi — IA Planner** | Assistente inteligente (Google Gemini 2.0 Flash) para planejar eventos via chat com sugestões contextuais e ações rápidas |
+| **Lista de Presentes** | Gerenciamento de lista com scraping automático de URL (Amazon, Americanas, etc.) para preencher item, imagem e preço |
+| **Page Builder** | Editor visual de página pública do evento com temas, cores e blocos customizáveis |
+| **Página do Evento** | Landing page pública e personalizável do evento para compartilhar com convidados |
+| **RSVP** | Confirmação de presença dos convidados diretamente na página do evento |
 
-### ⚙️ Administração
+### Para Fornecedores
 
 | Funcionalidade | Descrição |
 |---|---|
-| 👥 **Fornecedores** | Listagem, aprovação e gerenciamento de fornecedores cadastrados |
-| 🏗️ **Espaços** | Cadastro e gestão de espaços para eventos |
-| 🛠️ **Gigs dos Fornecedores** | Gerenciamento dos serviços vinculados a cada fornecedor |
+| **Perfil do Fornecedor** | Edição de perfil com foto, bio, localização e dados de contato |
+| **Meus Serviços** | Cadastro e gestão de serviços com múltiplas imagens, descrição e preço |
+| **Solicitações** | Visualização e gestão de solicitações de contato recebidas de clientes |
+
+### Administração
+
+| Funcionalidade | Descrição |
+|---|---|
+| **Fornecedores** | Listagem, aprovação e gerenciamento de fornecedores cadastrados |
+| **Espaços** | Cadastro e gestão de espaços para eventos |
+| **Gigs dos Fornecedores** | Gerenciamento dos serviços vinculados a cada fornecedor |
 
 ---
 
-## 🚀 Tecnologias
+## Tecnologias
 
 ### Back-end
 - **[PHP 8.3](https://www.php.net/)** — linguagem principal
@@ -94,39 +94,39 @@ A plataforma oferece desde descoberta de espaços e serviços até uma **assiste
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 A Celebra segue a arquitetura **TALL Stack** (Tailwind + Alpine + Livewire + Laravel), com componentes Livewire cobrindo toda a interatividade. Cada página é um componente Livewire isolado, comunicando-se via eventos e propriedades reativas.
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                    Browser                       │
-│         (Livewire Wire Requests / Vite)          │
+│                    Browser                      │
+│         (Livewire Wire Requests / Vite)         │
 └─────────────────┬───────────────────────────────┘
                   │
 ┌─────────────────▼───────────────────────────────┐
-│                  Laravel 13                      │
+│                  Laravel 13                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────────┐   │
 │  │  Routes  │  │Middleware│  │  Providers   │   │
 │  └────┬─────┘  └──────────┘  └──────────────┘   │
-│       │                                          │
+│       │                                         │
 │  ┌────▼─────────────────────────────────────┐   │
-│  │         Livewire Components               │   │
-│  │  HomePage │ VenueListing │ EventPlanner   │   │
-│  │  GiftRegistryManager │ PageBuilder │ ...  │   │
+│  │         Livewire Components              │   │
+│  │  HomePage │ VenueListing │ EventPlanner  │   │
+│  │  GiftRegistryManager │ PageBuilder │ ... │   │
 │  └────┬────────────────────┬────────────────┘   │
-│       │                    │                     │
-│  ┌────▼──────────┐  ┌──────▼───────────────┐   │
-│  │    Models     │  │      Services         │   │
-│  │ Event, Venue  │  │  GeminiService (AI)   │   │
-│  │ GiftRegistry  │  │  HTTP Scraper         │   │
-│  │ SupplierProf. │  └───────────────────────┘   │
-│  └────┬──────────┘                               │
-└───────┼──────────────────────────────────────────┘
+│       │                    │                    │
+│  ┌────▼──────────┐  ┌──────▼───────────────┐    │
+│  │    Models     │  │      Services        │    │
+│  │ Event, Venue  │  │  GeminiService (AI)  │    │
+│  │ GiftRegistry  │  │  HTTP Scraper        │    │
+│  │ SupplierProf. │  └──────────────────────┘    │
+│  └────┬──────────┘                              │
+└───────┼─────────────────────────────────────────┘
         │
-┌───────▼──────────────────────────────────────────┐
-│              MySQL  +  MinIO (S3)                 │
-└───────────────────────────────────────────────────┘
+┌───────▼─────────────────────────────────────────┐
+│              MySQL  +  MinIO (S3)               │
+└─────────────────────────────────────────────────┘
 ```
 
 ### Fluxo da IA (Celi)
@@ -144,7 +144,7 @@ Usuário → Livewire Component → GeminiService
 
 ---
 
-## 💻 Como Rodar
+## Como Rodar
 
 ### Pré-requisitos
 
@@ -198,7 +198,7 @@ Acesse em: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## 🔐 Variáveis de Ambiente
+## Variáveis de Ambiente
 
 Copie `.env.example` e preencha as seguintes variáveis:
 
@@ -243,7 +243,7 @@ QUEUE_CONNECTION=database
 
 ---
 
-## 🗄️ Banco de Dados
+## Banco de Dados
 
 ### Diagrama de entidades principais
 
@@ -286,7 +286,7 @@ venues
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 celebra/
@@ -355,7 +355,7 @@ celebra/
 
 ---
 
-## 🔑 Roles de Usuário
+## Roles de Usuário
 
 | Role | Acesso |
 |---|---|
@@ -365,7 +365,7 @@ celebra/
 
 ---
 
-## 🤖 A Celi — Assistente de IA
+## A Celi — Assistente de IA
 
 A **Celi** é a assistente virtual da Celebra, alimentada pelo **Google Gemini 2.0 Flash**. Ela possui contexto completo da plataforma: conhece os espaços disponíveis, os serviços cadastrados e os tipos de eventos suportados.
 
@@ -378,7 +378,7 @@ A **Celi** é a assistente virtual da Celebra, alimentada pelo **Google Gemini 2
 
 ---
 
-## 🎨 Page Builder
+## Page Builder
 
 O editor visual de página do evento permite personalizar:
 
@@ -397,7 +397,7 @@ O editor visual de página do evento permite personalizar:
 
 ---
 
-## 🎁 Lista de Presentes
+## Lista de Presentes
 
 Sistema completo de lista de presentes com:
 
@@ -409,7 +409,7 @@ Sistema completo de lista de presentes com:
 
 ---
 
-## 🧪 Testes
+## Testes
 
 ```bash
 # Rodar todos os testes
@@ -421,7 +421,7 @@ php artisan test
 
 ---
 
-## 📦 Deploy
+## Deploy
 
 ```bash
 # 1. Compilar assets para produção
@@ -441,12 +441,8 @@ php artisan migrate --force
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto é privado e de uso exclusivo da **eFlow**. Todos os direitos reservados.
 
 ---
-
-<p align="center">
-  Feito com ❤️ pela equipe <strong>eFlow</strong>
-</p>
