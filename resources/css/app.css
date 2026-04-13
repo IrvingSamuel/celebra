@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Primary */
+    --color-primary: #FF477E;
+    --color-primary-dark: #B73058;
+    --color-primary-light: #FF7AA2;
+
+    /* Secondary */
+    --color-secondary: #5465FF;
+    --color-secondary-dark: #3A48B0;
+    --color-secondary-light: #8B96FF;
+
+    /* Neutrals */
+    --color-text: #49516F;
+    --color-text-light: #6B7280;
+    --color-bg: #F4F4F4;
+    --color-white: #FFFFFF;
+    --color-dark: #1F2937;
+
+    /* Feedback */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+
+    /* Radii */
+    --radius-card: 12px;
+    --radius-pill: 100px;
+    --radius-btn: 8px;
+
+    /* Shadows */
+    --shadow-basket: 0px 34px 80px rgba(84, 101, 255, 0.11);
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-card-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
