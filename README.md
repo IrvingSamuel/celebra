@@ -443,6 +443,6 @@ php artisan migrate --force
 
 ## Licença
 
-Este projeto é privado e de uso exclusivo da **eFlow**. Todos os direitos reservados.
+Este projeto é privado e de uso exclusivo da **Rezumme**. Todos os direitos reservados.
 
 ---
