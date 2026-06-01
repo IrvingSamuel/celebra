@@ -32,6 +32,42 @@ window.toggleTheme = function () {
     window.applyTheme(current === 'dark' ? 'light' : 'dark');
 };
 
+// ============================================
+// Gerenciamento de Alto Contraste
+// ============================================
+
+/**
+ * Aplica o modo de contraste ao <html> e persiste no localStorage.
+ * @param {'high'|'normal'} contrast
+ */
+window.applyContrast = function (contrast) {
+    const root = document.documentElement;
+    if (contrast === 'high') {
+        root.setAttribute('data-contrast', 'high');
+    } else {
+        root.setAttribute('data-contrast', 'normal');
+        root.removeAttribute('data-contrast');
+    }
+    localStorage.setItem('contrast', contrast);
+
+    // Atualiza ícones e aria-label de todos os botões de contraste
+    document.querySelectorAll('[data-contrast-icon-on]').forEach(el => {
+        el.classList.toggle('hidden', contrast !== 'high');
+    });
+    document.querySelectorAll('[data-contrast-icon-off]').forEach(el => {
+        el.classList.toggle('hidden', contrast === 'high');
+    });
+    document.querySelectorAll('[data-contrast-toggle]').forEach(el => {
+        el.setAttribute('aria-pressed', contrast === 'high' ? 'true' : 'false');
+        el.setAttribute('aria-label', contrast === 'high' ? 'Desativar alto contraste' : 'Ativar alto contraste');
+    });
+};
+
+window.toggleContrast = function () {
+    const current = document.documentElement.getAttribute('data-contrast');
+    window.applyContrast(current === 'high' ? 'normal' : 'high');
+};
+
 window.Swal = Swal;
 
 window.SwalTheme = {

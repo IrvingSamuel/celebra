@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant hc (&:where([data-contrast="high"], [data-contrast="high"] *));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -56,6 +57,106 @@
     --color-text: #f1f5f9;      /* slate-100 — texto principal */
     --color-text-light: #94a3b8; /* slate-400 — texto secundário */
     --color-dark: #f8fafc;      /* invertido para uso em texto escuro sobre claro */
+}
+
+/* ============================================
+   Alto Contraste — paleta de acessibilidade
+   Dominante sobre o dark mode. Fundo preto puro,
+   texto branco puro, acentos amarelos.
+   Todos os ratios ≥ 7:1 (WCAG AAA).
+
+   Funcionamento:
+   - Sobrescreve TANTO os tokens semânticos do
+     projeto (--color-primary, --color-bg…)
+   - QUANTO a escala padrão do Tailwind
+     (--color-gray-*, --color-white…)
+   - As CSS custom properties em cascata fazem
+     com que bg-white, text-gray-500, etc.
+     usem os valores HC automaticamente.
+   ============================================ */
+[data-contrast="high"] {
+    /* ── Tokens semânticos do projeto ──────────────── */
+    --color-primary:        #FFFF00;   /* amarelo — 21:1 no preto */
+    --color-primary-dark:   #E6E600;
+    --color-primary-light:  #FFFF66;
+    --color-secondary:      #00FFFF;   /* ciano — 18:1 no preto */
+    --color-secondary-dark: #00D4D4;
+    --color-secondary-light: #66FFFF;
+    --color-text:       #FFFFFF;
+    --color-text-light: #FFFFFF;
+    --color-bg:         #000000;
+    --color-dark:       #FFFFFF;
+    --color-success:    #00FF88;
+    --color-warning:    #FFFF00;
+    --color-error:      #FF6666;
+    --color-info:       #66CCFF;
+
+    /* ── Branco do Tailwind → preto (bg-white vira fundo preto;
+          text-white vira preto, o que é ótimo em botões amarelos) ── */
+    --color-white: #000000;
+
+    /* ── Escala de cinzas do Tailwind ───────────────── */
+    /* Tons claros (usados como background) → preto */
+    --color-gray-50:  #000000;
+    --color-gray-100: #1a1a1a;  /* hover sutil e bordas finas */
+    --color-gray-200: #333333;  /* bordas mais visíveis */
+    --color-gray-300: #444444;
+    /* Tons médios (usados como texto) → branco */
+    --color-gray-400: #ffffff;
+    --color-gray-500: #ffffff;
+    --color-gray-600: #eeeeee;
+    /* Tons escuros (backgrounds no dark mode) → preto */
+    --color-gray-700: #222222;
+    --color-gray-800: #111111;
+    --color-gray-900: #000000;
+
+    /* ── Slate (texto no dark mode) ─────────────────── */
+    --color-slate-100: #ffffff;
+    --color-slate-400: #ffffff;
+
+    /* ── Amarelo para warning/hover ─────────────────── */
+    --color-yellow-600: #FFFF00;
+
+    /* ── Sombras → contornos brancos (dropdowns, cards) ─ */
+    --shadow-sm:      0 0 0 1px rgba(255,255,255,0.35);
+    --shadow:         0 0 0 1px rgba(255,255,255,0.35);
+    --shadow-md:      0 0 0 1px rgba(255,255,255,0.5);
+    --shadow-lg:      0 0 0 2px rgba(255,255,255,0.5);
+    --shadow-xl:      0 0 0 2px rgba(255,255,255,0.7);
+    --shadow-2xl:     0 0 0 3px #ffffff;
+    --shadow-basket:  0 0 0 1px rgba(255,255,255,0.35);
+    --shadow-card:    0 0 0 1px rgba(255,255,255,0.35);
+    --shadow-card-hover: 0 0 0 2px #ffffff;
+}
+
+/* Indicadores de foco amarelos em alto contraste */
+[data-contrast="high"] *:focus-visible {
+    outline: 3px solid #FFFF00 !important;
+    outline-offset: 3px !important;
+    box-shadow: none !important;
+}
+
+/* Botão de alto contraste → destaque amarelo quando ativo */
+[data-contrast="high"] [data-contrast-toggle] {
+    background-color: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+/* Fallback CSS-only: respeita preferência do SO sem precisar de JS */
+@media (prefers-contrast: more) {
+    :root:not([data-contrast="high"]):not([data-contrast="normal"]) {
+        --color-primary: #FFFF00;
+        --color-primary-dark: #E6E600;
+        --color-white: #000000;
+        --color-text: #FFFFFF;
+        --color-text-light: #FFFFFF;
+        --color-bg: #000000;
+        --color-gray-50:  #000000;
+        --color-gray-100: #1a1a1a;
+        --color-gray-400: #ffffff;
+        --color-gray-500: #ffffff;
+        --color-gray-900: #000000;
+    }
 }
 
 /* Transição suave ao alternar tema */

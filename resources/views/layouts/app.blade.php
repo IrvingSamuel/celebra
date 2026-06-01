@@ -10,13 +10,18 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=poppins:300,400,500,600,700" rel="stylesheet" />
 
-    {{-- Script anti-flash: define o tema ANTES do render para evitar piscar --}}
+    {{-- Script anti-flash: define tema e contraste ANTES do render para evitar piscar --}}
     <script>
         (function () {
             var saved = localStorage.getItem('theme');
             var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (saved === 'dark' || (!saved && prefersDark)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            var savedContrast = localStorage.getItem('contrast');
+            var prefersMoreContrast = window.matchMedia('(prefers-contrast: more)').matches;
+            if (savedContrast === 'high' || (!savedContrast && prefersMoreContrast)) {
+                document.documentElement.setAttribute('data-contrast', 'high');
             }
         })();
     </script>
@@ -73,6 +78,27 @@
                         </svg>
                     </button>
 
+                    {{-- Botão de alto contraste (desktop) --}}
+                    <button
+                        data-contrast-toggle
+                        onclick="toggleContrast()"
+                        aria-label="Ativar alto contraste"
+                        aria-pressed="false"
+                        class="hidden md:flex items-center justify-center w-9 h-9 rounded-full text-text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition [data-contrast=high]_&:bg-primary/10 [data-contrast=high]_&:text-primary">
+                        {{-- Ícone contraste desativado (visível quando HC está OFF) --}}
+                        <svg data-contrast-icon-off class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 3v18" />
+                            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>
+                        </svg>
+                        {{-- Ícone contraste ativado (visível quando HC está ON) --}}
+                        <svg data-contrast-icon-on class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 3v18" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 3a9 9 0 0 0 0 18z"/>
+                        </svg>
+                    </button>
+
                     @auth
                         @if(auth()->user()->isAdmin())
                             <a href="/admin/fornecedores" class="text-sm font-medium text-warning hover:text-yellow-600 transition">Admin</a>
@@ -120,6 +146,26 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
                         </svg>
                         Alternar tema
+                    </button>
+
+                    {{-- Toggle alto contraste no mobile --}}
+                    <button
+                        data-contrast-toggle
+                        onclick="toggleContrast()"
+                        aria-label="Ativar alto contraste"
+                        aria-pressed="false"
+                        class="flex items-center gap-2 text-sm font-medium text-text-light hover:text-primary transition">
+                        <svg data-contrast-icon-off class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 3v18" />
+                            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <svg data-contrast-icon-on class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 3v18" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 3a9 9 0 0 0 0 18z"/>
+                        </svg>
+                        Alto contraste
                     </button>
                 </div>
             </div>
@@ -196,6 +242,18 @@
             });
             document.querySelectorAll('[data-theme-icon-moon]').forEach(function (el) {
                 el.classList.toggle('hidden', isDark);
+            });
+
+            var isHighContrast = document.documentElement.getAttribute('data-contrast') === 'high';
+            document.querySelectorAll('[data-contrast-icon-on]').forEach(function (el) {
+                el.classList.toggle('hidden', !isHighContrast);
+            });
+            document.querySelectorAll('[data-contrast-icon-off]').forEach(function (el) {
+                el.classList.toggle('hidden', isHighContrast);
+            });
+            document.querySelectorAll('[data-contrast-toggle]').forEach(function (el) {
+                el.setAttribute('aria-pressed', isHighContrast ? 'true' : 'false');
+                el.setAttribute('aria-label', isHighContrast ? 'Desativar alto contraste' : 'Ativar alto contraste');
             });
         })();
     </script>
