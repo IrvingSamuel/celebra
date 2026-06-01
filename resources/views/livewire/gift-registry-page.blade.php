@@ -66,7 +66,7 @@
                 </span>
                 <div class="flex items-center justify-center gap-3">
                     <div class="h-px w-16 bg-primary/20"></div>
-                    <span class="text-2xl">🎁</span>
+                    <span class="text-2xl">✦</span>
                     <div class="h-px w-16 bg-primary/20"></div>
                 </div>
                 @if($registry->description)
@@ -85,7 +85,7 @@
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 {{ $full ? 'opacity-50' : '' }}">
                             @else
                                 <div class="w-full h-full flex items-center justify-center">
-                                    <span class="text-5xl opacity-30">🎁</span>
+                                    <span class="text-5xl opacity-30">✦</span>
                                 </div>
                             @endif
                             @if($full)
@@ -132,7 +132,7 @@
                                     <button
                                         wire:click="openPledge({{ $item->id }})"
                                         class="w-full text-center text-xs font-semibold py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors duration-200">
-                                        🎁 Vou presentear
+                                        Vou presentear
                                     </button>
                                 @endif
                                 @if($item->url)
@@ -146,7 +146,7 @@
                     </div>
                 @empty
                     <div class="col-span-full text-center py-20">
-                        <p class="text-[#a8a29e] text-sm">A lista de presentes ainda está sendo preparada. 🎁</p>
+                        <p class="text-[#a8a29e] text-sm">A lista de presentes ainda está sendo preparada.</p>
                     </div>
                 @endforelse
             </div>
@@ -237,7 +237,7 @@
                                     wire:loading.attr="disabled"
                                     wire:target="submitPledge"
                                     class="w-full py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition disabled:opacity-60">
-                                <span wire:loading.remove wire:target="submitPledge">Confirmar presente 🎁</span>
+                                <span wire:loading.remove wire:target="submitPledge">Confirmar presente</span>
                                 <span wire:loading wire:target="submitPledge">Confirmando…</span>
                             </button>
                         </form>

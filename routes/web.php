@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Route;
 
 // --- Public routes ---
 Route::get('/', HomePage::class);
-Route::get('/espacos', VenueListing::class);
-Route::get('/espacos/{slug}', VenueDetail::class);
+Route::get('/espacos', fn() => redirect('/servicos'));
+Route::get('/espacos/{slug}', fn() => redirect('/servicos'));
 Route::get('/servicos/{category?}', ServiceListing::class);
 Route::get('/servico/{slug}', ServiceDetail::class);
 Route::get('/presentes/{slug}', GiftRegistryPage::class);

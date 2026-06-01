@@ -90,7 +90,7 @@
                                 @if($image)
                                     <img src="{{ $image }}" alt="Preview" class="w-full h-full object-cover">
                                 @else
-                                    <span class="text-4xl">🎁</span>
+                                    <span class="text-4xl"></span>
                                 @endif
                             </div>
                             <input
@@ -214,7 +214,7 @@
                                 @if($item->image)
                                     <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover">
                                 @else
-                                    <div class="w-full h-full flex items-center justify-center text-2xl">🎁</div>
+                                    <div class="w-full h-full flex items-center justify-center text-2xl"></div>
                                 @endif
                             </div>
 
@@ -251,7 +251,7 @@
                                     @if($item->activePledges->count() > 0)
                                         <button @click="showPledges = !showPledges"
                                                 class="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition">
-                                            🎁 {{ $item->activePledges->count() }} presenteador{{ $item->activePledges->count() > 1 ? 'es' : '' }}
+                                            {{ $item->activePledges->count() }} presenteador{{ $item->activePledges->count() > 1 ? 'es' : '' }}
                                             <svg class="w-3 h-3 transition-transform" :class="showPledges ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                             </svg>
@@ -306,7 +306,7 @@
                     </div>
                 @empty
                     <div class="p-12 text-center">
-                        <span class="text-5xl block mb-3">🎁</span>
+                        <span class="text-5xl block mb-3">✦</span>
                         <p class="text-gray-500 text-sm">Nenhum presente cadastrado ainda.</p>
                         <p class="text-gray-400 text-xs mt-1">Cole o link de um produto acima para começar.</p>
                     </div>

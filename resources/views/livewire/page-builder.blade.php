@@ -81,14 +81,14 @@
                 <div class="space-y-1.5">
 
                     @foreach([
-                        ['hero',      '🖼️',  'Hero / Banner',       'Cabeçalho com foto e título'],
-                        ['message',   '💬',  'Mensagem',            'Texto livre com imagem opcional'],
-                        ['countdown', '⏱️',  'Contagem Regressiva', 'Contador automático da data'],
-                        ['gallery',   '📸',  'Galeria',             'Grade de fotos'],
-                        ['gifts',     '🎁',  'Lista de Presentes',  'Exibe sua lista de presentes'],
-                        ['schedule',  '📋',  'Programação',         'Linha do tempo do evento'],
-                        ['location',  '📍',  'Local',               'Endereço e link para o mapa'],
-                        ['rsvp',      '✅',  'Confirmação RSVP',    'Formulário de presença'],
+                        ['hero',      '',  'Hero / Banner',       'Cabeçalho com foto e título'],
+                        ['message',   '',  'Mensagem',            'Texto livre com imagem opcional'],
+                        ['countdown', '',  'Contagem Regressiva', 'Contador automático da data'],
+                        ['gallery',   '',  'Galeria',             'Grade de fotos'],
+                        ['gifts',     '',  'Lista de Presentes',  'Exibe sua lista de presentes'],
+                        ['schedule',  '',  'Programação',         'Linha do tempo do evento'],
+                        ['location',  '',  'Local',               'Endereço e link para o mapa'],
+                        ['rsvp',      '',  'Confirmação RSVP',    'Formulário de presença'],
                     ] as [$btype, $icon, $label, $desc])
                         <button wire:click="addBlock('{{ $btype }}')"
                                 class="w-full text-left flex items-start gap-2.5 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-700 transition group">
@@ -128,14 +128,14 @@
                                 {{-- Type label --}}
                                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                                     @switch($block['type'])
-                                        @case('hero')      🖼️ Hero @break
-                                        @case('message')   💬 Mensagem @break
-                                        @case('countdown') ⏱️ Contagem @break
-                                        @case('gallery')   📸 Galeria @break
-                                        @case('gifts')     🎁 Presentes @break
-                                        @case('schedule')  📋 Programação @break
-                                        @case('location')  📍 Local @break
-                                        @case('rsvp')      ✅ RSVP @break
+                                        @case('hero')       Hero @break
+                                        @case('message')    Mensagem @break
+                                        @case('countdown')  Contagem @break
+                                        @case('gallery')    Galeria @break
+                                        @case('gifts')      Presentes @break
+                                        @case('schedule')   Programação @break
+                                        @case('location')   Local @break
+                                        @case('rsvp')       RSVP @break
                                     @endswitch
                                 </span>
 

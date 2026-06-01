@@ -21,14 +21,97 @@
                 @endforeach
             </div>
 
-            {{-- Search --}}
-            <div class="bg-white rounded-card p-4 shadow-sm mb-8">
-                <div class="flex items-center gap-2 bg-bg rounded-full px-4 py-2">
-                    <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                    <input wire:model.live.debounce.300ms="search" type="text" placeholder="Buscar serviço..."
-                        class="w-full bg-transparent text-sm text-text placeholder-gray-400 border-none focus:outline-none focus:ring-0">
+            {{-- Filter Panel --}}
+            <div class="bg-white rounded-card shadow-sm mb-8 overflow-hidden">
+                {{-- Search row --}}
+                <div class="p-4 border-b border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div class="flex items-center gap-2 bg-bg rounded-full px-4 py-2.5 flex-1">
+                        <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input wire:model.live.debounce.300ms="search" type="text" placeholder="Buscar por nome ou descrição..."
+                            class="w-full bg-transparent text-sm text-text placeholder-gray-400 border-none focus:outline-none focus:ring-0">
+                        @if($search)
+                            <button wire:click="$set('search','')" class="text-gray-400 hover:text-gray-600 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                        @endif
+                    </div>
+                    {{-- Sort --}}
+                    <div class="flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                        </svg>
+                        <select wire:model.live="sortBy"
+                            class="text-sm border border-gray-200 rounded-xl px-3 py-2 text-text bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="rating">Melhor avaliação</option>
+                            <option value="price_asc">Menor preço</option>
+                            <option value="price_desc">Maior preço</option>
+                        </select>
+                    </div>
+                </div>
+
+                {{-- Filter row --}}
+                <div class="p-4 flex flex-wrap gap-3 items-end">
+                    {{-- City --}}
+                    <div class="flex flex-col gap-1 min-w-[150px] flex-1">
+                        <label class="text-xs font-medium text-gray-500 flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Localidade
+                        </label>
+                        <input wire:model.live.debounce.300ms="city" type="text" placeholder="Cidade ou estado..."
+                            list="cities-list"
+                            class="text-sm border border-gray-200 rounded-xl px-3 py-2 text-text placeholder-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <datalist id="cities-list">
+                            @foreach($cities as $c)
+                                <option value="{{ $c }}">
+                            @endforeach
+                        </datalist>
+                    </div>
+
+                    {{-- Min Price --}}
+                    <div class="flex flex-col gap-1 w-32">
+                        <label class="text-xs font-medium text-gray-500">Preço mínimo</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">R$</span>
+                            <input wire:model.live.debounce.400ms="minPrice" type="number" min="0" placeholder="0"
+                                class="w-full text-sm border border-gray-200 rounded-xl pl-8 pr-3 py-2 text-text placeholder-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    {{-- Max Price --}}
+                    <div class="flex flex-col gap-1 w-32">
+                        <label class="text-xs font-medium text-gray-500">Preço máximo</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">R$</span>
+                            <input wire:model.live.debounce.400ms="maxPrice" type="number" min="0" placeholder="∞"
+                                class="w-full text-sm border border-gray-200 rounded-xl pl-8 pr-3 py-2 text-text placeholder-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    {{-- Min Rating --}}
+                    <div class="flex flex-col gap-1 w-32">
+                        <label class="text-xs font-medium text-gray-500 flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            Avaliação mín.
+                        </label>
+                        <select wire:model.live="minRating"
+                            class="text-sm border border-gray-200 rounded-xl px-3 py-2 text-text bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Qualquer</option>
+                            <option value="3">3+ estrelas</option>
+                            <option value="4">4+ estrelas</option>
+                            <option value="4.5">4.5+ estrelas</option>
+                        </select>
+                    </div>
+
+                    {{-- Clear --}}
+                    @if($hasActiveFilters)
+                        <button wire:click="clearFilters"
+                            class="flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-primary transition px-3 py-2 rounded-xl hover:bg-gray-50 border border-gray-200 self-end">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            Limpar filtros
+                        </button>
+                    @endif
                 </div>
             </div>
 
