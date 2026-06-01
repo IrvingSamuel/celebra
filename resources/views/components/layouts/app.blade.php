@@ -153,22 +153,21 @@
             </div>
         </div>
     </footer>
-    {{-- Container para VLibras widget --}}
-    <div id="vlibras-container"></div>
-    
-    {{-- Script inline para inicializar VLibras após load --}}
+
+    {{-- VLibras Widget (Acessibilidade - Libras) --}}
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    {{-- VLibras Script --}}
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            // Aguarda a API do VLibras estar disponível
-            if (typeof window.VLibras !== 'undefined' && window.VLibras.Widget) {
-                try {
-                    // Cria nova instância do widget com o container
-                    new window.VLibras.Widget('https://vlibras.gov.br/app');
-                } catch (e) {
-                    console.warn('VLibras Widget instantiation warning:', e);
-                }
-            }
-        });
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 </body>
 </html>
+
+{{-- Last updated: 1780280854 --}}

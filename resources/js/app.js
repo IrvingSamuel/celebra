@@ -94,19 +94,3 @@ window.SwalTheme = {
         });
     },
 };
-
-// VLibras loader — carrega o plugin oficial do governo para Libras
-(function initVLibras(){
-    try {
-        const lang = document.documentElement.lang || navigator.language || 'pt-BR';
-        if (!/pt/i.test(lang)) return; // somente para pt
-        if (document.getElementById('vlibras-script')) return;
-        const script = document.createElement('script');
-        script.id = 'vlibras-script';
-        script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
-        script.async = true;
-        document.head.appendChild(script);
-    } catch (e) {
-        console.error('VLibras init error', e);
-    }
-})();
