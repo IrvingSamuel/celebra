@@ -10,11 +10,22 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=poppins:300,400,500,600,700" rel="stylesheet" />
 
+    {{-- Script anti-flash: define o tema ANTES do render para evitar piscar --}}
+    <script>
+        (function () {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-bg font-sans text-text antialiased">
     {{-- Navbar --}}
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white dark:bg-gray-900 shadow-sm dark:shadow-gray-800/50 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
@@ -33,7 +44,7 @@
                             Serviços
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
-                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             @foreach(\App\Models\ServiceCategory::orderBy('sort_order')->get() as $cat)
                                 <a href="/servicos/{{ $cat->slug }}" class="block px-4 py-2 text-sm text-text hover:bg-bg hover:text-primary transition">{{ $cat->name }}</a>
                             @endforeach
@@ -47,8 +58,21 @@
                     </a>
                 </div>
 
-                {{-- Auth Buttons --}}
+                {{-- Auth Buttons + Theme Toggle --}}
                 <div class="flex items-center gap-3">
+                    {{-- Botão de alternar tema (desktop) --}}
+                    <button onclick="toggleTheme()" title="Alternar tema"
+                        class="hidden md:flex items-center justify-center w-9 h-9 rounded-full text-text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        {{-- Ícone Lua (visível no modo claro) --}}
+                        <svg data-theme-icon-moon class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                        {{-- Ícone Sol (visível no modo escuro) --}}
+                        <svg data-theme-icon-sun class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+                        </svg>
+                    </button>
+
                     @auth
                         @if(auth()->user()->isAdmin())
                             <a href="/admin/fornecedores" class="text-sm font-medium text-warning hover:text-yellow-600 transition">Admin</a>
@@ -56,7 +80,7 @@
                         <a href="/dashboard" class="text-sm font-medium text-text hover:text-primary transition">Meu Painel</a>
                         <form method="POST" action="/logout" class="inline">
                             @csrf
-                            <button type="submit" class="text-sm font-medium text-gray-500 hover:text-primary transition">Sair</button>
+                            <button type="submit" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary transition">Sair</button>
                         </form>
                     @else
                         <a href="/cadastrar" class="text-sm font-medium text-text hover:text-primary transition">Cadastrar</a>
@@ -73,7 +97,7 @@
             </div>
 
             {{-- Mobile Menu --}}
-            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-100 mt-2 pt-4">
+            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-100 dark:border-gray-700 mt-2 pt-4">
                 <div class="flex flex-col gap-3">
                     <a href="/" class="text-sm font-medium text-text hover:text-primary transition">Início</a>
                     <a href="/servicos" class="text-sm font-medium text-text hover:text-primary transition">Serviços</a>
@@ -87,6 +111,16 @@
                         <a href="/entrar" class="text-sm font-medium text-text hover:text-primary transition">Entrar</a>
                         <a href="/cadastrar" class="text-sm font-medium text-text hover:text-primary transition">Cadastrar</a>
                     @endauth
+                    {{-- Toggle tema no mobile --}}
+                    <button onclick="toggleTheme()" class="flex items-center gap-2 text-sm font-medium text-text-light hover:text-primary transition">
+                        <svg data-theme-icon-moon class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                        <svg data-theme-icon-sun class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+                        </svg>
+                        Alternar tema
+                    </button>
                 </div>
             </div>
         </div>
@@ -105,7 +139,7 @@
     @endauth
 
     {{-- Footer --}}
-    <footer class="bg-white border-t border-gray-100 mt-20">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {{-- Brand --}}
@@ -116,13 +150,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                         </svg>
                     </a>
-                    <p class="text-sm text-gray-500 leading-relaxed">Planeje o evento dos seus sonhos com os melhores fornecedores e espaços do Brasil.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Planeje o evento dos seus sonhos com os melhores fornecedores e espaços do Brasil.</p>
                 </div>
 
                 {{-- Links --}}
                 <div>
                     <h4 class="font-semibold text-text mb-4">Serviços</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                         <li><a href="/servicos/decoracao" class="hover:text-primary transition">Decoração</a></li>
                         <li><a href="/servicos/fotografia" class="hover:text-primary transition">Fotografia</a></li>
                         <li><a href="/servicos/buffet" class="hover:text-primary transition">Buffet</a></li>
@@ -132,7 +166,7 @@
 
                 <div>
                     <h4 class="font-semibold text-text mb-4">Plataforma</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                         <li><a href="/planejar" class="hover:text-primary transition">Planejar Evento</a></li>
                         <li><a href="/espacos" class="hover:text-primary transition">Espaços</a></li>
                         <li><a href="/prototype" class="hover:text-primary transition">Protótipo IHC</a></li>
@@ -141,17 +175,29 @@
 
                 <div>
                     <h4 class="font-semibold text-text mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                         <li><a href="#" class="hover:text-primary transition">Privacidade</a></li>
                         <li><a href="#" class="hover:text-primary transition">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-gray-100 mt-8 pt-8 text-center text-sm text-gray-400">
+            <div class="border-t border-gray-100 dark:border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400 dark:text-gray-500">
                 &copy; {{ date('Y') }} Celebra. Todos os direitos reservados.
             </div>
         </div>
     </footer>
+    {{-- Inicializa os ícones do toggle após o DOM estar pronto --}}
+    <script>
+        (function () {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.querySelectorAll('[data-theme-icon-sun]').forEach(function (el) {
+                el.classList.toggle('hidden', !isDark);
+            });
+            document.querySelectorAll('[data-theme-icon-moon]').forEach(function (el) {
+                el.classList.toggle('hidden', isDark);
+            });
+        })();
+    </script>
 </body>
 </html>

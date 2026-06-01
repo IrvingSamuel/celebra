@@ -16,8 +16,8 @@
             <div class="flex gap-6">
                 {{-- Sidebar: Conversation History --}}
                 <div class="hidden lg:block w-72 shrink-0">
-                    <div class="bg-gray-100 rounded-card shadow-sm overflow-hidden">
-                        <div class="p-4 border-b border-gray-100">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-card shadow-sm overflow-hidden">
+                        <div class="p-4 border-b border-gray-100 dark:border-gray-700">
                             <button wire:click="newConversation"
                                 class="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-dark text-white text-sm font-medium px-4 py-2.5 rounded-xl transition">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="max-h-[480px] overflow-y-auto">
                             @forelse($conversations as $conv)
-                                <div class="group flex items-center gap-2 px-4 py-3 border-b border-gray-50 hover:bg-bg transition cursor-pointer {{ $activeConversationId === $conv->id ? 'bg-secondary/5 border-l-2 border-l-secondary' : '' }}">
+                                <div class="group flex items-center gap-2 px-4 py-3 border-b border-gray-50 dark:border-gray-700 hover:bg-bg transition cursor-pointer {{ $activeConversationId === $conv->id ? 'bg-secondary/5 border-l-2 border-l-secondary' : '' }}">
                                     <button wire:click="loadConversation({{ $conv->id }})" class="flex-1 text-left min-w-0">
                                         <p class="text-sm font-medium text-text truncate">{{ $conv->title ?? 'Conversa' }}</p>
                                         <p class="text-xs text-gray-400 mt-0.5">{{ $conv->updated_at->diffForHumans() }}</p>
@@ -66,7 +66,7 @@
                             Nova
                         </button>
                         <select wire:change="loadConversation($event.target.value)"
-                            class="flex-1 text-sm border border-gray-200 rounded-xl px-3 py-2 text-text focus:ring-2 focus:ring-secondary focus:border-transparent">
+                            class="flex-1 text-sm border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-xl px-3 py-2 text-text focus:ring-2 focus:ring-secondary focus:border-transparent">
                             <option value="">Selecionar conversa...</option>
                             @foreach($conversations as $conv)
                                 <option value="{{ $conv->id }}" {{ $activeConversationId === $conv->id ? 'selected' : '' }}>
@@ -87,7 +87,7 @@
                                         <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shrink-0">
                                             <span class="text-white text-xs">✦</span>
                                         </div>
-                                        <div class="bg-white rounded-card rounded-tl-none p-4 shadow-card max-w-sm">
+                                        <div class="bg-white dark:bg-gray-700 rounded-card rounded-tl-none p-4 shadow-card max-w-sm">
                                             <div class="text-sm text-text leading-relaxed prose prose-sm max-w-none [&_a:not(.celi-card)]:text-secondary [&_a:not(.celi-card)]:underline [&_a:not(.celi-card)]:font-medium">
                                                 {!! $this->formatMessageContent($message['content']) !!}
                                             </div>
@@ -131,7 +131,7 @@
                                         Criar evento com base nesta conversa
                                     </button>
                                     <a href="/dashboard"
-                                        class="inline-flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-bg text-text text-sm font-medium rounded-full border border-gray-200 hover:border-gray-300 transition shadow-sm">
+                                        class="inline-flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-gray-700 hover:bg-bg text-text text-sm font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-gray-300 transition shadow-sm">
                                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                                         </svg>
@@ -144,7 +144,7 @@
                                 <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shrink-0">
                                     <span class="text-white text-xs">✦</span>
                                 </div>
-                                <div class="bg-white rounded-card rounded-tl-none p-4 shadow-card">
+                                <div class="bg-white dark:bg-gray-700 rounded-card rounded-tl-none p-4 shadow-card">
                                     <div class="flex items-center gap-2">
                                         <span class="text-sm text-gray-500">Celi está digitando</span>
                                         <span class="flex gap-0.5">
@@ -158,10 +158,10 @@
                         </div>
 
                         {{-- Input --}}
-                        <div class="border-t border-gray-100 p-4">
+                        <div class="border-t border-gray-100 dark:border-gray-700 p-4">
                             <form wire:submit="sendMessage" class="flex items-center gap-3">
                                 <input wire:model="userMessage" type="text" placeholder="Digite sua mensagem..."
-                                    class="flex-1 px-4 py-3 rounded-full border border-gray-200 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
+                                    class="flex-1 px-4 py-3 rounded-full border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm text-text placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
                                     wire:loading.attr="disabled" wire:target="sendMessage, quickSend, fetchResponse"
                                     autocomplete="off">
                                 <button type="submit" class="bg-secondary hover:bg-secondary-dark text-white p-3 rounded-full transition disabled:opacity-50"
@@ -179,7 +179,7 @@
                         @foreach($eventTypes as $et)
                             <button wire:click="quickSend('Quero planejar {{ strtolower($et->name) }}')"
                                 wire:loading.attr="disabled" wire:target="sendMessage, quickSend, fetchResponse"
-                                class="px-4 py-2 bg-white rounded-full text-sm text-text hover:bg-primary hover:text-white transition shadow-sm disabled:opacity-50">
+                                class="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm text-text hover:bg-primary hover:text-white dark:hover:bg-primary transition shadow-sm disabled:opacity-50">
                                 {{ $et->icon }} {{ $et->name }}
                             </button>
                         @endforeach

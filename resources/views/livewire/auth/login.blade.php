@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-bg flex items-center justify-center py-12 px-4">
-    <div class="max-w-md w-full bg-white rounded-card shadow-sm p-8">
+    <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-card shadow-sm p-8">
         <div class="text-center mb-8">
             <a href="/" class="inline-flex items-center gap-2 mb-4">
                 <span class="text-3xl font-bold text-primary">Celebra</span>
@@ -13,7 +13,7 @@
             <div>
                 <label for="email" class="block text-sm font-medium text-text mb-1">E-mail</label>
                 <input wire:model="email" type="email" id="email" placeholder="seu@email.com"
-                    class="w-full px-4 py-3 rounded-btn border border-gray-200 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    class="w-full px-4 py-3 rounded-btn border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm text-text placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
                 @error('email') <span class="text-error text-xs mt-1">{{ $message }}</span> @enderror
             </div>
 
@@ -21,7 +21,7 @@
             <div>
                 <label for="password" class="block text-sm font-medium text-text mb-1">Senha</label>
                 <input wire:model="password" type="password" id="password" placeholder="Sua senha"
-                    class="w-full px-4 py-3 rounded-btn border border-gray-200 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    class="w-full px-4 py-3 rounded-btn border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm text-text placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
                 @error('password') <span class="text-error text-xs mt-1">{{ $message }}</span> @enderror
             </div>
 
@@ -41,7 +41,7 @@
             </button>
         </form>
 
-        <p class="text-center text-sm text-gray-500 mt-6">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
             Não tem conta? <a href="/cadastrar" class="text-primary font-medium hover:text-primary-dark transition">Cadastrar</a>
         </p>
     </div>

@@ -1,18 +1,18 @@
 <div>
     {{-- Hero Section --}}
-    <section class="relative bg-gradient-to-br from-pink-50 via-white to-indigo-50 overflow-hidden">
+    <section class="relative bg-gradient-to-br from-pink-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h1 class="text-4xl lg:text-5xl font-bold text-text leading-tight">
                         Planeje o <span class="text-primary">evento</span> dos seus sonhos
                     </h1>
-                    <p class="mt-4 text-lg text-gray-500 leading-relaxed">
+                    <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
                         Casamentos, formaturas, aniversários e muito mais. Encontre os melhores espaços, fornecedores e serviços em um só lugar.
                     </p>
 
                     {{-- Search Bar --}}
-                    <div class="mt-8 flex items-center bg-white rounded-full shadow-lg p-2 max-w-lg">
+                    <div class="mt-8 flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg p-2 max-w-lg">
                         <div class="flex-1 flex items-center gap-2 px-4">
                             <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -21,7 +21,7 @@
                                 wire:model.live.debounce.300ms="search"
                                 type="text"
                                 placeholder="Buscar espaços, serviços..."
-                                class="w-full py-2 text-sm text-text placeholder-gray-400 border-none focus:outline-none focus:ring-0"
+                                class="w-full py-2 text-sm text-text placeholder-gray-400 dark:placeholder-gray-500 border-none focus:outline-none focus:ring-0 bg-transparent"
                             >
                         </div>
                         <a href="/espacos{{ $search ? '?search=' . urlencode($search) : '' }}"
@@ -88,7 +88,7 @@
             'Conferência' => 'images/venues/loft-industrial-42.jpg',
         ];
     @endphp
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-text">Que tipo de evento você quer planejar?</h2>
@@ -131,26 +131,26 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-8 bg-white rounded-card shadow-sm">
+                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('venues/jardim-imperial.jpg') }}" alt="Escolha" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-lg font-semibold text-text mb-2">1. Escolha</h3>
-                    <p class="text-sm text-gray-500">Selecione o tipo de evento e explore espaços e serviços disponíveis.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Selecione o tipo de evento e explore espaços e serviços disponíveis.</p>
                 </div>
-                <div class="text-center p-8 bg-white rounded-card shadow-sm">
+                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('services/luxe-design-eventos.jpg') }}" alt="Planeje" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-lg font-semibold text-text mb-2">2. Planeje</h3>
-                    <p class="text-sm text-gray-500">Use a Celi, nossa assistente IA, para receber recomendações personalizadas.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Use a Celi, nossa assistente IA, para receber recomendações personalizadas.</p>
                 </div>
-                <div class="text-center p-8 bg-white rounded-card shadow-sm">
+                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('venues/mansao-tropical.jpg') }}" alt="Celebre" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-lg font-semibold text-text mb-2">3. Celebre</h3>
-                    <p class="text-sm text-gray-500">Contrate os fornecedores, crie sua lista de presentes e aproveite!</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Contrate os fornecedores, crie sua lista de presentes e aproveite!</p>
                 </div>
             </div>
         </div>
@@ -166,7 +166,7 @@
             'Vestidos' => 'images/services/atelier-noiva-perfeita.jpg',
         ];
     @endphp
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-text">Nossos Serviços</h2>
@@ -220,7 +220,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @forelse($featuredVenues as $venue)
-                    <a href="/espacos/{{ $venue->slug }}" class="bg-white rounded-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group block">
+                    <a href="/espacos/{{ $venue->slug }}" class="bg-white dark:bg-gray-800 rounded-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group block">
                         <div class="aspect-[4/3] bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden relative">
                             @if($venue->image_url)
                                 <img src="{{ $venue->image_url }}" alt="{{ $venue->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -255,16 +255,16 @@
                     </a>
                 @empty
                     @for($i = 0; $i < 4; $i++)
-                        <div class="bg-white rounded-card overflow-hidden shadow-sm">
-                            <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
-                                <svg class="w-16 h-16 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="bg-white dark:bg-gray-800 rounded-card overflow-hidden shadow-sm">
+                            <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 dark:from-gray-700 to-gray-50 dark:to-gray-800 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-gray-200 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
                             <div class="p-4">
-                                <div class="h-5 bg-gray-100 rounded w-3/4"></div>
-                                <div class="h-4 bg-gray-100 rounded w-1/2 mt-2"></div>
-                                <div class="h-5 bg-gray-100 rounded w-1/3 mt-3"></div>
+                                <div class="h-5 bg-gray-100 dark:bg-gray-700 rounded w-3/4"></div>
+                                <div class="h-4 bg-gray-100 dark:bg-gray-700 rounded w-1/2 mt-2"></div>
+                                <div class="h-5 bg-gray-100 dark:bg-gray-700 rounded w-1/3 mt-3"></div>
                             </div>
                         </div>
                     @endfor

@@ -12,7 +12,7 @@
             </nav>
 
             {{-- Supplier info bar --}}
-            <div class="bg-white rounded-card shadow-sm p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
                     @if($supplier->logo)
                         @php $logoSrc = str_starts_with($supplier->logo, 'http') ? $supplier->logo : \Illuminate\Support\Facades\Storage::disk('minio')->url($supplier->logo); @endphp
@@ -36,7 +36,7 @@
                             </span>
                         @endif
                     </div>
-                    <p class="text-sm text-gray-500 mt-0.5">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
                         {{ $supplier->user->email ?? '' }}
                         @if($supplier->city) · {{ $supplier->city }}{{ $supplier->state ? ', ' . $supplier->state : '' }} @endif
                         @if($supplier->category) · {{ $supplier->category->icon }} {{ $supplier->category->name }} @endif
@@ -70,7 +70,7 @@
 
             {{-- Form --}}
             @if($showForm)
-                <div class="bg-white rounded-card shadow-sm p-6 mb-6">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-6">
                     <h3 class="text-lg font-semibold text-text mb-5">{{ $editingId ? 'Editar GIG' : 'Novo GIG' }}</h3>
                     <form wire:submit="save" class="space-y-4">
 
@@ -78,7 +78,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Categoria <span class="text-red-500">*</span></label>
                                 <select wire:model="categoryId"
-                                        class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition bg-white @error('categoryId') border-red-400 @enderror">
+                                        class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition bg-white @error('categoryId') border-red-400 @enderror">
                                     <option value="">Selecione...</option>
                                     @foreach($categories as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->icon ? $cat->icon . ' ' : '' }}{{ $cat->name }}</option>
@@ -90,7 +90,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Preço (R$) <span class="text-red-500">*</span></label>
                                 <input wire:model="price" type="number" min="0" step="0.01" placeholder="0,00"
-                                       class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('price') border-red-400 @enderror">
+                                       class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('price') border-red-400 @enderror">
                                 @error('price') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                         </div>
@@ -98,14 +98,14 @@
                         <div>
                             <label class="block text-sm font-medium text-text mb-1.5">Nome do GIG <span class="text-red-500">*</span></label>
                             <input wire:model="name" type="text" placeholder="Ex: Cobertura fotográfica completa"
-                                   class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
+                                   class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
                             @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-text mb-1.5">Descrição</label>
                             <textarea wire:model="description" rows="3" placeholder="Descreva o serviço..."
-                                      class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
+                                      class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
                             @error('description') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
@@ -178,10 +178,10 @@
 
             {{-- GIGs grid --}}
             @if($services->isEmpty() && ! $showForm)
-                <div class="bg-white rounded-card shadow-sm p-12 text-center">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-12 text-center">
                     <span class="text-4xl block mb-3">📦</span>
                     <p class="font-semibold text-text mb-1">Nenhum GIG cadastrado</p>
-                    <p class="text-sm text-gray-500 mb-4">Este fornecedor ainda não tem serviços cadastrados.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Este fornecedor ainda não tem serviços cadastrados.</p>
                     <button wire:click="openCreate"
                             class="inline-block bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-6 py-2.5 rounded-pill transition">
                         Adicionar GIG
@@ -190,7 +190,7 @@
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     @foreach($services as $service)
-                        <div class="bg-white rounded-card shadow-sm overflow-hidden {{ ! $service->active ? 'opacity-60' : '' }}">
+                        <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden {{ ! $service->active ? 'opacity-60' : '' }}">
                             @php $primaryImage = $service->primary_image; @endphp
                             @if($primaryImage)
                                 @php $imgSrc = str_starts_with($primaryImage, 'http') ? $primaryImage : \Illuminate\Support\Facades\Storage::disk('minio')->url($primaryImage); @endphp

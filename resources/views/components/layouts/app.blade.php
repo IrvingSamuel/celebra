@@ -153,5 +153,7 @@
             </div>
         </div>
     </footer>
+    {{-- VLibras root (placeholder) --}}
+    <div id="vlibras-root" aria-hidden="true"></div>
 </body>
 </html>

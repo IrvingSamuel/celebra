@@ -77,7 +77,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
                 @forelse($items as $item)
                     @php $full = $item->quantity_desired > 0 && $item->quantity_received >= $item->quantity_desired; @endphp
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
+                    <div class="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
 
                         <div class="aspect-square bg-[#f5f5f4] overflow-hidden shrink-0 relative">
                             @if($item->image)
