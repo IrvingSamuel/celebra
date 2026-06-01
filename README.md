@@ -142,6 +142,12 @@ Usuário → Livewire Component → GeminiService
      (histórico salvo)
 ```
 
+### Acessibilidade e VLibras
+
+- **VLibras:** integrado no front-end global via `resources/js/app.js` para páginas com `lang="pt"`.
+- **Chat Celi:** mensagens usam `role="log"`, `aria-live="polite"` e `aria-atomic="false"` para melhorar compatibilidade com leitores de tela e o widget de Libras.
+- **Teste recomendado:** abra a página com o site em português, verifique se o botão de VLibras aparece e se a Celi pode ser usada normalmente.
+
 ---
 
 ## Como Rodar

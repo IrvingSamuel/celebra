@@ -42,8 +42,13 @@ window.SwalTheme = {
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
             reverseButtons: true,
+            background: '#FFFFFF',
+            color: '#1F2937',
             customClass: {
-                popup: '!rounded-xl !font-[Poppins]',
+                popup: '!rounded-xl !font-[Poppins] !shadow-card !border !border-gray-200',
+                title: '!text-text !text-lg !font-semibold',
+                htmlContainer: '!text-sm !text-text-light',
+                actions: '!mt-6 !gap-3',
                 confirmButton: '!rounded-lg !text-sm !font-semibold !px-5 !py-2',
                 cancelButton: '!rounded-lg !text-sm !font-medium !px-5 !py-2',
             },
@@ -59,8 +64,32 @@ window.SwalTheme = {
     },
     successDialog(options) {
         return window.SwalTheme.confirmDialog({
-            icon: 'question',
+            icon: 'success',
             confirmButtonColor: '#10B981',
+            ...options,
+        });
+    },
+    infoDialog(options) {
+        return Swal.fire({
+            icon: 'info',
+            confirmButtonColor: '#3B82F6',
+            showCancelButton: false,
+            customClass: {
+                popup: '!rounded-xl !font-[Poppins]',
+                confirmButton: '!rounded-lg !text-sm !font-semibold !px-5 !py-2',
+            },
+            ...options,
+        });
+    },
+    errorDialog(options) {
+        return Swal.fire({
+            icon: 'error',
+            confirmButtonColor: '#EF4444',
+            showCancelButton: false,
+            customClass: {
+                popup: '!rounded-xl !font-[Poppins]',
+                confirmButton: '!rounded-lg !text-sm !font-semibold !px-5 !py-2',
+            },
             ...options,
         });
     },
@@ -75,17 +104,7 @@ window.SwalTheme = {
         const script = document.createElement('script');
         script.id = 'vlibras-script';
         script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
-        script.defer = true;
-        script.onload = () => {
-            // cria wrapper mínimo se não existir
-            if (!document.querySelector('div[vw]')) {
-                const wrapper = document.createElement('div');
-                wrapper.setAttribute('vw', '');
-                wrapper.className = 'enabled';
-                wrapper.innerHTML = '<div vw-access-button class="vw-access-button" aria-hidden="true"></div><div vw-plugin-wrapper aria-hidden="true"><div class="vw-plugin-top-wrapper"></div></div>';
-                document.body.appendChild(wrapper);
-            }
-        };
+        script.async = true;
         document.head.appendChild(script);
     } catch (e) {
         console.error('VLibras init error', e);

@@ -321,8 +321,8 @@
                                                 <div class="flex items-center justify-end gap-2">
                                                     <button wire:click="openEdit({{ $venue->id }})"
                                                             class="text-xs font-medium text-primary hover:underline">Editar</button>
-                                                    <button wire:click="delete({{ $venue->id }})"
-                                                            wire:confirm="Tem certeza que deseja excluir '{{ addslashes($venue->name) }}'? Esta ação não pode ser desfeita."
+                                                    <button type="button"
+                                                            x-on:click="SwalTheme.dangerDialog({ title: 'Tem certeza que deseja excluir \'{{ addslashes($venue->name) }}\'?', text: 'Esta ação não pode ser desfeita.', confirmButtonText: 'Excluir' }).then(r => r.isConfirmed && $wire.delete({{ $venue->id }}))"
                                                             class="text-xs font-medium text-red-500 hover:underline">Excluir</button>
                                                 </div>
                                             </td>

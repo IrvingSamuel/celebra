@@ -105,7 +105,7 @@
     @endauth
 
     {{-- Footer --}}
-    <footer class="bg-white border-t border-gray-100 mt-20">
+    <footer class="bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {{-- Brand --}}
@@ -153,7 +153,22 @@
             </div>
         </div>
     </footer>
-    {{-- VLibras root (placeholder) --}}
-    <div id="vlibras-root" aria-hidden="true"></div>
+    {{-- Container para VLibras widget --}}
+    <div id="vlibras-container"></div>
+    
+    {{-- Script inline para inicializar VLibras após load --}}
+    <script>
+        window.addEventListener('load', function() {
+            // Aguarda a API do VLibras estar disponível
+            if (typeof window.VLibras !== 'undefined' && window.VLibras.Widget) {
+                try {
+                    // Cria nova instância do widget com o container
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                } catch (e) {
+                    console.warn('VLibras Widget instantiation warning:', e);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

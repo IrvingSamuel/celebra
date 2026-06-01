@@ -50,7 +50,7 @@
                         {{-- No action needed, already verified --}}
                     @else
                         <a href="/admin/fornecedores"
-                           onclick="if(!confirm('Aprovar e verificar {{ addslashes($supplier->company_name) }}?')) return false; fetch('/admin/api/approve/{{ $supplier->id }}', {method: 'POST', headers: {'X-CSRF-TOKEN': document.querySelector(\'meta[name=csrf-token]\').content}}).then(()=>location.reload())"
+                           onclick="event.preventDefault(); SwalTheme.successDialog({ title: 'Aprovar e verificar {{ addslashes($supplier->company_name) }}?', text: 'O fornecedor será marcado como verificado.', confirmButtonText: 'Aprovar' }).then(r => r.isConfirmed && fetch('/admin/api/approve/{{ $supplier->id }}', { method: 'POST', headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content } }).then(() => location.reload()))"
                            class="hidden">noop</a>
                     @endif
                 </div>
