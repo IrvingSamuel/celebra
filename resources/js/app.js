@@ -130,3 +130,37 @@ window.SwalTheme = {
         });
     },
 };
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Procura os botões que você colocou no HTML pelos IDs deles
+    const btnAumentar = document.getElementById('btn-aumentar');
+    const btnDiminuir = document.getElementById('btn-diminuir');
+    const btnNormal = document.getElementById('btn-normal');
+
+    let tamanhoAtual = 100; 
+
+    function aplicarTamanho(novoTamanho) {
+        tamanhoAtual = novoTamanho;
+        // Altera o tamanho da fonte do site inteiro mudando o body
+        document.body.style.fontSize = tamanhoAtual + '%';
+    }
+
+    // Se o botão existir na tela, ativa o clique dele
+    if (btnAumentar) {
+        btnAumentar.addEventListener('click', () => {
+            if (tamanhoAtual < 140) aplicarTamanho(tamanhoAtual + 10);
+        });
+    }
+
+    if (btnDiminuir) {
+        btnDiminuir.addEventListener('click', () => {
+            if (tamanhoAtual > 80) aplicarTamanho(tamanhoAtual - 10);
+        });
+    }
+
+    if (btnNormal) {
+        btnNormal.addEventListener('click', () => {
+            aplicarTamanho(100);
+        });
+    }
+});

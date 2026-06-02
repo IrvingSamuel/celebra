@@ -49,7 +49,7 @@
                             Serviços
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
-                        <div class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
                             @foreach(\App\Models\ServiceCategory::orderBy('sort_order')->get() as $cat)
                                 <a href="/servicos/{{ $cat->slug }}" class="block px-4 py-2 text-sm text-text hover:bg-bg hover:text-primary transition">{{ $cat->name }}</a>
                             @endforeach
@@ -61,6 +61,13 @@
                         </svg>
                         Planejar Evento
                     </a>
+                    
+                </div>
+
+                <div class="flex items-center gap-3 border-l border-gray-200 dark:border-gray-700 pl-4 ml-2">
+                    <button id="btn-diminuir" title="Diminuir fonte" class="text-xs font-bold text-gray-400 hover:text-primary bg-transparent border-none transition cursor-pointer">A-</button>
+                    <button id="btn-normal" title="Fonte normal" class="text-xs font-bold text-gray-400 hover:text-primary bg-transparent border-none transition cursor-pointer">A</button>
+                    <button id="btn-aumentar" title="Aumentar fonte" class="text-xs font-bold text-gray-400 hover:text-primary bg-transparent border-none transition cursor-pointer">A+</button>
                 </div>
 
                 {{-- Auth Buttons + Theme Toggle --}}
@@ -77,6 +84,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
                         </svg>
                     </button>
+                    
 
                     {{-- Botão de alto contraste (desktop) --}}
                     <button
@@ -167,6 +175,7 @@
                         </svg>
                         Alto contraste
                     </button>
+                    
                 </div>
             </div>
         </div>
