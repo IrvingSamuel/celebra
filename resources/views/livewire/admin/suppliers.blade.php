@@ -17,37 +17,37 @@
 
             {{-- Stats --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div class="bg-white rounded-card p-5 shadow-sm flex items-center gap-4">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm flex items-center gap-4">
                     <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 uppercase tracking-wide">Total</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Total</p>
                         <p class="text-3xl font-bold text-text">{{ $totalCount }}</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm flex items-center gap-4 cursor-pointer hover:shadow-md transition" wire:click="$set('filter', 'verified')">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm flex items-center gap-4 cursor-pointer hover:shadow-md transition" wire:click="$set('filter', 'verified')">
                     <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 uppercase tracking-wide">Verificados</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Verificados</p>
                         <p class="text-3xl font-bold text-success">{{ $verifiedCount }}</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm flex items-center gap-4 cursor-pointer hover:shadow-md transition" wire:click="$set('filter', 'pending')">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm flex items-center gap-4 cursor-pointer hover:shadow-md transition" wire:click="$set('filter', 'pending')">
                     <div class="w-12 h-12 bg-warning/10 rounded-full flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-.586A1 1 0 0110 12v-2a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 uppercase tracking-wide">Pendentes</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Pendentes</p>
                         <p class="text-3xl font-bold text-warning">{{ $pendingCount }}</p>
                     </div>
                 </div>
             </div>
 
             {{-- Filters + Search --}}
-            <div class="bg-white rounded-card shadow-sm p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <div class="flex-1 flex items-center gap-2 bg-bg rounded-full px-4 py-2">
                     <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -73,28 +73,28 @@
             </div>
 
             {{-- Table --}}
-            <div class="bg-white rounded-card shadow-sm overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden">
                 @if($suppliers->isEmpty())
                     <div class="py-16 text-center">
                         <span class="text-4xl block mb-3">🔍</span>
                         <p class="font-semibold text-text">Nenhum fornecedor encontrado</p>
-                        <p class="text-sm text-gray-500 mt-1">Tente ajustar os filtros de busca.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Tente ajustar os filtros de busca.</p>
                     </div>
                 @else
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
                             <thead>
-                                <tr class="border-b border-gray-100 bg-bg">
-                                    <th class="text-left font-semibold text-gray-500 px-6 py-3 text-xs uppercase tracking-wide">Fornecedor</th>
-                                    <th class="text-left font-semibold text-gray-500 px-4 py-3 text-xs uppercase tracking-wide hidden sm:table-cell">Cidade</th>
-                                    <th class="text-center font-semibold text-gray-500 px-4 py-3 text-xs uppercase tracking-wide">GIGs</th>
-                                    <th class="text-center font-semibold text-gray-500 px-4 py-3 text-xs uppercase tracking-wide">Status</th>
-                                    <th class="text-right font-semibold text-gray-500 px-6 py-3 text-xs uppercase tracking-wide">Ações</th>
+                                <tr class="border-b border-gray-100 dark:border-gray-700 bg-bg">
+                                    <th class="text-left font-semibold text-gray-500 dark:text-gray-400 px-6 py-3 text-xs uppercase tracking-wide">Fornecedor</th>
+                                    <th class="text-left font-semibold text-gray-500 dark:text-gray-400 px-4 py-3 text-xs uppercase tracking-wide hidden sm:table-cell">Cidade</th>
+                                    <th class="text-center font-semibold text-gray-500 dark:text-gray-400 px-4 py-3 text-xs uppercase tracking-wide">GIGs</th>
+                                    <th class="text-center font-semibold text-gray-500 dark:text-gray-400 px-4 py-3 text-xs uppercase tracking-wide">Status</th>
+                                    <th class="text-right font-semibold text-gray-500 dark:text-gray-400 px-6 py-3 text-xs uppercase tracking-wide">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-50">
+                            <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                                 @foreach($suppliers as $supplier)
-                                    <tr class="hover:bg-bg/50 transition group">
+                                    <tr class="hover:bg-bg/50 dark:hover:bg-gray-700/50 transition group">
                                         {{-- Fornecedor --}}
                                         <td class="px-6 py-4">
                                             <div class="flex items-center gap-3">
@@ -113,7 +113,7 @@
                                             </div>
                                         </td>
                                         {{-- Cidade --}}
-                                        <td class="px-4 py-4 text-sm text-gray-500 hidden sm:table-cell">
+                                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-400 hidden sm:table-cell">
                                             {{ $supplier->city ? $supplier->city . ($supplier->state ? ', ' . $supplier->state : '') : '—' }}
                                         </td>
                                         {{-- GIGs --}}
@@ -188,7 +188,7 @@
 
                     {{-- Pagination --}}
                     @if($suppliers->hasPages())
-                        <div class="px-6 py-4 border-t border-gray-100">
+                        <div class="px-6 py-4 border-t border-gray-100 dark:border-gray-700">
                             {{ $suppliers->links() }}
                         </div>
                     @endif

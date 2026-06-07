@@ -84,7 +84,7 @@
             @endif
 
             {{-- Tabs --}}
-            <div class="bg-white rounded-card shadow-sm overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden">
 
                 {{-- Page action bar (only when editing an existing event) --}}
                 @if($eventId && $eventSlug)
@@ -114,7 +114,7 @@
                 @endif
 
                 {{-- Tab bar --}}
-                <div class="border-b border-gray-100 overflow-x-auto">
+                <div class="border-b border-gray-100 dark:border-gray-700 overflow-x-auto">
                     <div class="flex min-w-max">
                         {{-- Info tab --}}
                         <button wire:click="$set('activeTab', 'info')"
@@ -155,7 +155,7 @@
 
                 {{-- ===== SHARED FILTERS (visible on service/venue tabs) ===== --}}
                 @if($activeTab !== 'info')
-                    <div class="flex flex-wrap items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100">
+                    <div class="flex flex-wrap items-center gap-2 px-5 py-3 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700">
                         {{-- Location --}}
                         <div class="relative">
                             <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@
                             </svg>
                             <input wire:model.live.debounce.300ms="filterLocation"
                                 type="text" placeholder="Cidade ou estado"
-                                class="pl-8 pr-3 py-2 border border-gray-200 rounded-xl text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition w-44 bg-white">
+                                class="pl-8 pr-3 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition w-44 bg-white">
                         </div>
 
                         {{-- Min price --}}
@@ -205,7 +205,7 @@
                             <div class="sm:col-span-2">
                                 <label class="block text-sm font-medium text-text mb-1.5">Nome do evento <span class="text-red-400">*</span></label>
                                 <input wire:model.live.debounce.800ms="title" type="text" placeholder="Ex: Casamento de Ana e Bruno"
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('title') border-red-300 @enderror">
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('title') border-red-300 @enderror">
                                 @error('title') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 
@@ -213,7 +213,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Tipo de evento <span class="text-red-400">*</span></label>
                                 <select wire:model.live="eventTypeId"
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('eventTypeId') border-red-300 @enderror">
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('eventTypeId') border-red-300 @enderror">
                                     <option value="">Selecione o tipo...</option>
                                     @foreach($eventTypes as $et)
                                         <option value="{{ $et->id }}">{{ $et->name }}</option>
@@ -226,7 +226,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Data do evento</label>
                                 <input wire:model.live="eventDate" type="date"
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('eventDate') border-red-300 @enderror">
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('eventDate') border-red-300 @enderror">
                                 @error('eventDate') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 
@@ -234,7 +234,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Número de convidados</label>
                                 <input wire:model.live.debounce.600ms="guestCount" type="number" min="1" placeholder="Ex: 150"
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('guestCount') border-red-300 @enderror">
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('guestCount') border-red-300 @enderror">
                                 @error('guestCount') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 
@@ -242,7 +242,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Orçamento estimado (R$)</label>
                                 <input wire:model.live.debounce.600ms="budget" type="number" min="0" step="0.01" placeholder="Ex: 50000"
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('budget') border-red-300 @enderror">
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition @error('budget') border-red-300 @enderror">
                                 @error('budget') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 
@@ -250,7 +250,7 @@
                             <div class="sm:col-span-2">
                                 <label class="block text-sm font-medium text-text mb-1.5">Descrição</label>
                                 <textarea wire:model.live.debounce.1000ms="description" rows="3" placeholder="Descreva seu evento..."
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none @error('description') border-red-300 @enderror"></textarea>
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none @error('description') border-red-300 @enderror"></textarea>
                                 @error('description') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 
@@ -258,7 +258,7 @@
                             <div class="sm:col-span-2">
                                 <label class="block text-sm font-medium text-text mb-1.5">Mensagem para convidados</label>
                                 <textarea wire:model.live.debounce.1000ms="message" rows="2" placeholder="Uma mensagem especial para aparecer na landing page..."
-                                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none @error('message') border-red-300 @enderror"></textarea>
+                                    class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-xl px-4 py-3 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none @error('message') border-red-300 @enderror"></textarea>
                                 @error('message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
 

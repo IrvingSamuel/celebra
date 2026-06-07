@@ -23,10 +23,10 @@
 
             {{-- Sem perfil --}}
             @if(! $profile)
-                <div class="bg-white rounded-card shadow-sm p-10 text-center">
-                    <span class="text-4xl block mb-3">🏪</span>
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-10 text-center">
+                    <span class="text-4xl block mb-3">🏦</span>
                     <p class="font-semibold text-text mb-1">Configure seu perfil primeiro</p>
-                    <p class="text-sm text-gray-500 mb-4">Para cadastrar serviços, você precisa ter um perfil de fornecedor ativo.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Para cadastrar serviços, você precisa ter um perfil de fornecedor ativo.</p>
                     <a href="/fornecedor/perfil" class="inline-block bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-6 py-2.5 rounded-pill transition">
                         Configurar Perfil
                     </a>
@@ -35,14 +35,14 @@
 
                 {{-- Formulário de criação / edição --}}
                 @if($showForm)
-                    <div class="bg-white rounded-card shadow-sm p-6 mb-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-6">
                         <h2 class="text-lg font-semibold text-text mb-5">{{ $editingId ? 'Editar Serviço' : 'Novo Serviço' }}</h2>
                         <form wire:submit="save" class="space-y-4">
 
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Categoria do serviço <span class="text-red-500">*</span></label>
                                 <select wire:model="categoryId"
-                                        class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition bg-white @error('categoryId') border-red-400 @enderror">
+                                        class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition bg-white @error('categoryId') border-red-400 @enderror">
                                     <option value="">Selecione uma categoria...</option>
                                     @foreach($categories as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->icon ? $cat->icon . ' ' : '' }}{{ $cat->name }}</option>
@@ -54,21 +54,21 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Nome do serviço <span class="text-red-500">*</span></label>
                                 <input wire:model="name" type="text" placeholder="Ex: Ensaio pré-wedding"
-                                       class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
+                                       class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
                                 @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Descrição</label>
                                 <textarea wire:model="description" rows="3" placeholder="Descreva o que está incluído..."
-                                          class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
+                                          class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
                                 @error('description') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Preço (R$) <span class="text-red-500">*</span></label>
                                 <input wire:model="price" type="number" min="0" step="0.01" placeholder="0,00"
-                                       class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('price') border-red-400 @enderror">
+                                       class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('price') border-red-400 @enderror">
                                 @error('price') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
@@ -151,10 +151,10 @@
 
                 {{-- Lista de serviços --}}
                 @if($services->isEmpty() && ! $showForm)
-                    <div class="bg-white rounded-card shadow-sm p-10 text-center">
+                    <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-10 text-center">
                         <span class="text-4xl block mb-3">📦</span>
                         <p class="font-semibold text-text mb-1">Nenhum serviço cadastrado ainda</p>
-                        <p class="text-sm text-gray-500 mb-4">Adicione seus serviços para que os clientes possam encontrá-los.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Adicione seus serviços para que os clientes possam encontrá-los.</p>
                         <button wire:click="openCreate"
                                 class="inline-block bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-6 py-2.5 rounded-pill transition">
                             Criar primeiro serviço
@@ -163,7 +163,7 @@
                 @else
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         @foreach($services as $service)
-                            <div class="bg-white rounded-card shadow-sm overflow-hidden {{ ! $service->active ? 'opacity-60' : '' }}">
+                            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden {{ ! $service->active ? 'opacity-60' : '' }}">
                                 @php $primaryImage = $service->primary_image; @endphp
                                 @if($primaryImage)
                                     @if(str_starts_with($primaryImage, 'http'))
@@ -178,17 +178,17 @@
                                     <div class="flex items-start justify-between gap-2">
                                         <h3 class="font-semibold text-text text-sm leading-tight">{{ $service->name }}</h3>
                                         @if(! $service->active)
-                                            <span class="flex-shrink-0 text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Inativo</span>
+                                            <span class="flex-shrink-0 text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-full">Inativo</span>
                                         @endif
                                     </div>
                                     @if($service->category)
                                         <p class="text-xs text-primary/80 font-medium mt-1">{{ $service->category->icon ? $service->category->icon . ' ' : '' }}{{ $service->category->name }}</p>
                                     @endif
-                                    <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ $service->description }}</p>
-                                    <p class="text-xs text-gray-400 mt-2">a partir de</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{{ $service->description }}</p>
+                                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">a partir de</p>
                                     <p class="text-primary font-bold">R$ {{ number_format($service->price, 0, ',', '.') }}</p>
 
-                                    <div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100">
+                                    <div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
                                         <button wire:click="openEdit({{ $service->id }})"
                                                 class="flex-1 text-xs font-medium text-primary hover:bg-primary/5 py-1.5 rounded-lg transition">
                                             Editar

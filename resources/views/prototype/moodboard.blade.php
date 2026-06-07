@@ -120,7 +120,7 @@
                 <div class="bg-bg rounded-card p-6">
                     <div class="aspect-video rounded-btn bg-gradient-to-br from-warning/20 to-warning/5 flex items-center justify-center mb-4">
                         <div class="text-center">
-                            <span class="text-4xl">🎁</span>
+                            <span class="text-4xl">✦</span>
                             <p class="text-xs text-gray-400 mt-2">Landing temática</p>
                         </div>
                     </div>

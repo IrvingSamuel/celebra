@@ -141,7 +141,7 @@
                                     @if($item->image)
                                         <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 {{ $full ? 'opacity-50' : '' }}">
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center text-5xl">🎁</div>
+                                        <div class="w-full h-full flex items-center justify-center text-5xl"></div>
                                     @endif
                                     @if($full)
                                         <div class="absolute inset-0 flex items-center justify-center">
@@ -172,7 +172,7 @@
                                             <button wire:click="openPledge({{ $item->id }})"
                                                     class="w-full text-center text-sm font-semibold py-2.5 rounded-full transition hover:opacity-80 text-white"
                                                     style="background: var(--ep-primary);">
-                                                🎁 Vou presentear
+                                                Vou presentear
                                             </button>
                                         @endif
                                         @if($item->url)
@@ -188,7 +188,7 @@
                         @endforeach
                     </div>
                 @else
-                    <p class="text-center text-lg opacity-50" style="color: var(--ep-text);">A lista de presentes está sendo preparada. 🎁</p>
+                    <p class="text-center text-lg opacity-50" style="color: var(--ep-text);">A lista de presentes está sendo preparada.</p>
                 @endif
             </div>
         </section>
@@ -464,7 +464,7 @@ document.addEventListener('alpine:init', () => {
                                 wire:target="submitPledge"
                                 class="w-full py-3 rounded-xl text-white text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
                                 style="background: var(--ep-primary);">
-                            <span wire:loading.remove wire:target="submitPledge">Confirmar presente 🎁</span>
+                            <span wire:loading.remove wire:target="submitPledge">Confirmar presente</span>
                             <span wire:loading wire:target="submitPledge">Confirmando…</span>
                         </button>
                     </form>
