@@ -13,7 +13,7 @@
 
             {{-- Sem perfil --}}
             @if(! isset($counts['all']))
-                <div class="bg-white rounded-card shadow-sm p-10 text-center">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-10 text-center">
                     <span class="text-4xl block mb-3">🏪</span>
                     <p class="font-semibold text-text mb-1">Configure seu perfil primeiro</p>
                     <a href="/fornecedor/perfil" class="inline-block bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-6 py-2.5 rounded-pill transition mt-3">
@@ -27,7 +27,7 @@
                     @foreach(['all' => 'Todas', 'pending' => 'Pendentes', 'accepted' => 'Aceitas', 'declined' => 'Recusadas'] as $key => $label)
                         <button wire:click="$set('filterStatus', '{{ $key }}')"
                                 class="flex-shrink-0 px-4 py-2 rounded-pill text-sm font-medium transition
-                                       {{ $filterStatus === $key ? 'bg-primary text-white' : 'bg-white text-text hover:bg-bg border border-gray-200' }}">
+                                       {{ $filterStatus === $key ? 'bg-primary text-white' : 'bg-white dark:bg-gray-800 text-text hover:bg-bg border border-gray-200 dark:border-gray-700' }}">
                             {{ $label }}
                             @if(isset($counts[$key]))
                                 <span class="ml-1 text-xs {{ $filterStatus === $key ? 'text-white/80' : 'text-gray-400' }}">{{ $counts[$key] }}</span>
@@ -38,12 +38,12 @@
 
                 {{-- Empty state --}}
                 @if($requests->isEmpty())
-                    <div class="bg-white rounded-card shadow-sm p-10 text-center">
+                    <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-10 text-center">
                         <span class="text-4xl block mb-3">📭</span>
                         <p class="font-semibold text-text mb-1">Nenhuma solicitação
                             @if($filterStatus !== 'all') com este status @endif
                         </p>
-                        <p class="text-sm text-gray-500">Os pedidos de orçamento dos clientes aparecerão aqui.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Os pedidos de orçamento dos clientes aparecerão aqui.</p>
                     </div>
                 @else
                     <div class="space-y-4">
@@ -55,7 +55,7 @@
                                     default     => ['label' => 'Pendente', 'class' => 'bg-warning/10 text-warning'],
                                 };
                             @endphp
-                            <div class="bg-white rounded-card shadow-sm p-5">
+                            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-5">
                                 <div class="flex items-start justify-between gap-4">
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center gap-2 flex-wrap mb-1">

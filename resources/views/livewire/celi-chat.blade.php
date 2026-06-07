@@ -32,7 +32,7 @@
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
         x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-        class="fixed bottom-24 right-6 z-50 w-[400px] min-h-[70vh] max-h-[600px] flex flex-col bg-white rounded-card shadow-xl overflow-hidden"
+        class="fixed bottom-24 right-6 z-50 w-[400px] min-h-[70vh] max-h-[600px] flex flex-col bg-white dark:bg-gray-900 rounded-card shadow-xl overflow-hidden"
         style="display: none;"
     >
 
@@ -94,11 +94,11 @@
             x-transition:leave="transition ease-in duration-100"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-2"
-            class="bg-bg border-b border-gray-200 max-h-52 overflow-y-auto shrink-0"
+            class="bg-bg dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 max-h-52 overflow-y-auto shrink-0"
             style="display: none;"
         >
             @forelse($conversations as $conv)
-                <div class="group flex items-center gap-2 px-3 py-2.5 border-b border-gray-100 hover:bg-white transition cursor-pointer {{ $activeConversationId === $conv->id ? 'bg-secondary/5 border-l-2 border-l-secondary' : '' }}">
+                <div class="group flex items-center gap-2 px-3 py-2.5 border-b border-gray-100 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-700 transition cursor-pointer {{ $activeConversationId === $conv->id ? 'bg-secondary/5 border-l-2 border-l-secondary' : '' }}">
                     <button
                         wire:click="loadConversation({{ $conv->id }})"
                         x-on:click="showHistory = false"
@@ -125,7 +125,7 @@
         </div>
 
         {{-- ---- Área de Mensagens ---- --}}
-        <div class="flex-1 overflow-y-auto p-4 space-y-3 bg-bg" id="celi-mini-messages" style="min-height:0;">
+        <div class="flex-1 overflow-y-auto p-4 space-y-3 bg-bg dark:bg-gray-800/50" id="celi-mini-messages" style="min-height:0;" role="log" aria-live="polite" aria-atomic="false">
             @foreach($messages as $message)
                 @if($message['role'] === 'assistant')
                     {{-- Bolha Celi: bg-white, shadow-card, rounded-card rounded-tl-none --}}
@@ -133,7 +133,7 @@
                         <div class="w-7 h-7 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shrink-0">
                             <span class="text-white text-[10px]">✦</span>
                         </div>
-                        <div class="bg-white rounded-card rounded-tl-none p-3 shadow-card max-w-[260px]">
+                        <div class="bg-white dark:bg-gray-700 rounded-card rounded-tl-none p-3 shadow-card max-w-[260px]">
                             <div class="text-sm text-text leading-relaxed prose prose-sm max-w-none [&_a:not(.celi-card)]:text-secondary [&_a:not(.celi-card)]:underline [&_a:not(.celi-card)]:font-medium">
                                 {!! $this->formatMessageContent($message['content']) !!}
                             </div>
@@ -165,9 +165,9 @@
                 <div class="w-7 h-7 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shrink-0">
                     <span class="text-white text-[10px]">✦</span>
                 </div>
-                <div class="bg-white rounded-card rounded-tl-none p-3 shadow-card">
+                <div class="bg-white dark:bg-gray-700 rounded-card rounded-tl-none p-3 shadow-card">
                     <div class="flex items-center gap-1.5">
-                        <span class="text-xs text-gray-500">Celi está digitando</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">Celi está digitando</span>
                         <span class="flex gap-0.5">
                             <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
                             <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
@@ -180,29 +180,30 @@
 
         {{-- ---- Quick Actions (só na mensagem inicial) ---- --}}
         @if(count($messages) === 1)
-            <div class="px-3 py-2 bg-bg border-t border-gray-100 flex gap-1.5 overflow-x-auto shrink-0" style="scrollbar-width:none;">
+            <div class="px-3 py-2 bg-bg dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 flex gap-1.5 overflow-x-auto shrink-0" style="scrollbar-width:none;">
                 @foreach($eventTypes as $et)
                     <button
                         wire:click="quickSend('Quero planejar {{ strtolower($et->name) }}')"
                         wire:loading.attr="disabled"
                         wire:target="sendMessage, quickSend, fetchResponse"
-                        class="px-3 py-1.5 bg-white rounded-full text-xs text-text hover:bg-primary hover:text-white transition shadow-sm whitespace-nowrap disabled:opacity-50 shrink-0"
+                        class="px-3 py-1.5 bg-white dark:bg-gray-700 rounded-full text-xs text-text hover:bg-primary hover:text-white transition shadow-sm whitespace-nowrap disabled:opacity-50 shrink-0"
                     >{{ $et->icon }} {{ $et->name }}</button>
                 @endforeach
             </div>
         @endif
 
         {{-- ---- Campo de Entrada ---- --}}
-        <div class="border-t border-gray-100 px-3 py-3 bg-white shrink-0">
+        <div class="border-t border-gray-100 dark:border-gray-700 px-3 py-3 bg-white dark:bg-gray-900 shrink-0">
             <form wire:submit="sendMessage" class="flex items-center gap-2">
                 <input
                     wire:model="userMessage"
                     type="text"
                     placeholder="Mensagem para a Celi..."
+                    aria-label="Mensagem para a Celi"
                     autocomplete="off"
                     wire:loading.attr="disabled"
                     wire:target="sendMessage, quickSend, fetchResponse"
-                    class="flex-1 px-4 py-2.5 rounded-full border border-gray-200 text-sm text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
+                    class="flex-1 px-4 py-2.5 rounded-full border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm text-text placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
                 >
                 <button
                     type="submit"

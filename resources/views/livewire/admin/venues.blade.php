@@ -26,25 +26,25 @@
 
             {{-- Stats --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div class="bg-white rounded-card p-5 shadow-sm flex items-center gap-4">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm flex items-center gap-4">
                     <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 uppercase tracking-wide">Total</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Total</p>
                         <p class="text-3xl font-bold text-text">{{ $totalCount }}</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm flex items-center gap-4">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm flex items-center gap-4">
                     <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                         </svg>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 uppercase tracking-wide">Ativos</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Ativos</p>
                         <p class="text-3xl font-bold text-success">{{ $activeCount }}</p>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
 
             {{-- Form --}}
             @if($showForm)
-                <div class="bg-white rounded-card shadow-sm p-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-8">
                     <h3 class="text-lg font-semibold text-text mb-6">{{ $editingId ? 'Editar Espaço' : 'Novo Espaço' }}</h3>
                     <form wire:submit="save" class="space-y-5">
 
@@ -60,7 +60,7 @@
                         <div>
                             <label class="block text-sm font-medium text-text mb-1.5">Nome do espaço <span class="text-red-500">*</span></label>
                             <input wire:model="name" type="text" placeholder="Ex: Haras Santa Maria"
-                                   class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
+                                   class="w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('name') border-red-400 @enderror">
                             @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
@@ -69,7 +69,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-text mb-1.5">Tipo <span class="text-red-500">*</span></label>
                                 <select wire:model="type"
-                                        class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition bg-white @error('type') border-red-400 @enderror">
+                                        class="w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('type') border-red-400 @enderror">
                                     <option value="indoor">🏛️ Indoor (fechado)</option>
                                     <option value="outdoor">🌿 Outdoor (aberto)</option>
                                     <option value="ambos">✨ Ambos (indoor + outdoor)</option>
@@ -223,7 +223,7 @@
 
             {{-- Search --}}
             @if(! $showForm)
-                <div class="bg-white rounded-card shadow-sm p-4 mb-6">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-4 mb-6">
                     <div class="flex items-center gap-2 bg-bg rounded-full px-4 py-2">
                         <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -237,12 +237,12 @@
 
             {{-- Table --}}
             @if(! $showForm)
-                <div class="bg-white rounded-card shadow-sm overflow-hidden">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden">
                     @if($venues->isEmpty())
                         <div class="py-16 text-center">
-                            <span class="text-4xl block mb-3">🏛️</span>
+                            <span class="text-4xl block mb-3">🏙️</span>
                             <p class="font-semibold text-text">Nenhum espaço encontrado</p>
-                            <p class="text-sm text-gray-500 mt-1 mb-4">Cadastre o primeiro espaço para eventos da plataforma.</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-4">Cadastre o primeiro espaço para eventos da plataforma.</p>
                             <button wire:click="openCreate"
                                     class="inline-block bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-6 py-2.5 rounded-pill transition">
                                 Cadastrar espaço
@@ -252,18 +252,18 @@
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm">
                                 <thead>
-                                    <tr class="border-b border-gray-100 bg-bg">
-                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 text-xs uppercase tracking-wide">Espaço</th>
-                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 text-xs uppercase tracking-wide">Tipo</th>
-                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 text-xs uppercase tracking-wide">Capacidade</th>
-                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 text-xs uppercase tracking-wide">Preço base</th>
-                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 text-xs uppercase tracking-wide">Status</th>
-                                        <th class="px-5 py-3 text-right font-semibold text-gray-500 text-xs uppercase tracking-wide">Ações</th>
+                                    <tr class="border-b border-gray-100 dark:border-gray-700 bg-bg">
+                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Espaço</th>
+                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Tipo</th>
+                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Capacidade</th>
+                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Preço base</th>
+                                        <th class="px-5 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Status</th>
+                                        <th class="px-5 py-3 text-right font-semibold text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-50">
+                                <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                                     @foreach($venues as $venue)
-                                        <tr class="hover:bg-bg/50 transition">
+                                        <tr class="hover:bg-bg/50 dark:hover:bg-gray-700/50 transition">
                                             <td class="px-5 py-4">
                                                 <div class="flex items-center gap-3">
                                                     @if($venue->image)
@@ -321,8 +321,8 @@
                                                 <div class="flex items-center justify-end gap-2">
                                                     <button wire:click="openEdit({{ $venue->id }})"
                                                             class="text-xs font-medium text-primary hover:underline">Editar</button>
-                                                    <button wire:click="delete({{ $venue->id }})"
-                                                            wire:confirm="Tem certeza que deseja excluir '{{ addslashes($venue->name) }}'? Esta ação não pode ser desfeita."
+                                                    <button type="button"
+                                                            x-on:click="SwalTheme.dangerDialog({ title: 'Tem certeza que deseja excluir \'{{ addslashes($venue->name) }}\'?', text: 'Esta ação não pode ser desfeita.', confirmButtonText: 'Excluir' }).then(r => r.isConfirmed && $wire.delete({{ $venue->id }}))"
                                                             class="text-xs font-medium text-red-500 hover:underline">Excluir</button>
                                                 </div>
                                             </td>
@@ -333,7 +333,7 @@
                         </div>
 
                         @if($venues->hasPages())
-                            <div class="px-5 py-4 border-t border-gray-100">
+                            <div class="px-5 py-4 border-t border-gray-100 dark:border-gray-700">
                                 {{ $venues->links() }}
                             </div>
                         @endif

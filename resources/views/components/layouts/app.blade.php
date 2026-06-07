@@ -28,7 +28,6 @@
                 {{-- Navigation Links --}}
                 <div class="hidden md:flex items-center gap-8">
                     <a href="/" class="text-sm font-medium text-text hover:text-primary transition">Início</a>
-                    <a href="/espacos" class="text-sm font-medium text-text hover:text-primary transition">Espaços</a>
                     <div class="relative group">
                         <button class="flex items-center gap-1 text-sm font-medium text-text hover:text-primary transition">
                             Serviços
@@ -74,7 +73,6 @@
             <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-100 mt-2 pt-4">
                 <div class="flex flex-col gap-3">
                     <a href="/" class="text-sm font-medium text-text hover:text-primary transition">Início</a>
-                    <a href="/espacos" class="text-sm font-medium text-text hover:text-primary transition">Espaços</a>
                     <a href="/servicos" class="text-sm font-medium text-text hover:text-primary transition">Serviços</a>
                     <a href="/planejar" class="text-sm font-medium text-primary hover:text-primary-dark transition">Planejar Evento</a>
                     @auth
@@ -107,7 +105,7 @@
     @endauth
 
     {{-- Footer --}}
-    <footer class="bg-white border-t border-gray-100 mt-20">
+    <footer class="bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {{-- Brand --}}
@@ -155,5 +153,21 @@
             </div>
         </div>
     </footer>
+
+    {{-- VLibras Widget (Acessibilidade - Libras) --}}
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    {{-- VLibras Script --}}
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 </body>
 </html>
+
+{{-- Last updated: 1780280854 --}}

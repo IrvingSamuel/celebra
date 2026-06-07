@@ -30,7 +30,7 @@
                 </div>
             @else
                 {{-- Profile Card --}}
-                <div class="bg-white rounded-card shadow-sm p-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-8">
                     <div class="flex items-center gap-6">
                         <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                             @if($profile->logo)
@@ -65,38 +65,37 @@
                 </div>
             @endif
 
-            {{-- Stats --}}
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white rounded-card p-5 shadow-sm">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Serviços ativos</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Serviços ativos</p>
                     <p class="text-3xl font-bold text-primary">{{ $servicesCount }}</p>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Pendentes</p>
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Pendentes</p>
                     <p class="text-3xl font-bold text-warning">{{ $pendingCount }}</p>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Aceitas</p>
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Aceitas</p>
                     <p class="text-3xl font-bold text-success">{{ $acceptedCount }}</p>
                 </div>
-                <div class="bg-white rounded-card p-5 shadow-sm">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Receita estimada</p>
+                <div class="bg-white dark:bg-gray-800 rounded-card p-5 shadow-sm">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Receita estimada</p>
                     <p class="text-2xl font-bold text-text">R$&nbsp;{{ number_format($estimatedRevenue, 0, ',', '.') }}</p>
                 </div>
             </div>
 
             {{-- Quick Actions --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <a href="/fornecedor/servicos" class="bg-white rounded-card p-6 shadow-sm text-center hover:shadow-md transition group">
+                <a href="/fornecedor/servicos" class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm text-center hover:shadow-md transition group">
                     <div class="w-12 h-12 mx-auto mb-3 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition">
                         <span class="text-xl">📦</span>
                     </div>
                     <h3 class="font-semibold text-text mb-1">Meus Serviços</h3>
-                    <p class="text-sm text-gray-500">Cadastre e gerencie os serviços que você oferece.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Cadastre e gerencie os serviços que você oferece.</p>
                     <span class="mt-3 inline-block text-xs font-semibold text-primary">Gerenciar →</span>
                 </a>
 
-                <a href="/fornecedor/solicitacoes" class="bg-white rounded-card p-6 shadow-sm text-center hover:shadow-md transition group relative">
+                <a href="/fornecedor/solicitacoes" class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm text-center hover:shadow-md transition group relative">
                     <div class="w-12 h-12 mx-auto mb-3 bg-secondary/10 rounded-full flex items-center justify-center group-hover:bg-secondary/20 transition">
                         <span class="text-xl">📩</span>
                     </div>
@@ -104,16 +103,16 @@
                         <span class="absolute top-4 right-4 bg-warning text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">{{ $pendingCount }}</span>
                     @endif
                     <h3 class="font-semibold text-text mb-1">Solicitações</h3>
-                    <p class="text-sm text-gray-500">Veja e responda pedidos de orçamento recebidos.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Veja e responda pedidos de orçamento recebidos.</p>
                     <span class="mt-3 inline-block text-xs font-semibold text-primary">Ver solicitações →</span>
                 </a>
 
-                <a href="/fornecedor/perfil" class="bg-white rounded-card p-6 shadow-sm text-center hover:shadow-md transition group">
+                <a href="/fornecedor/perfil" class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm text-center hover:shadow-md transition group">
                     <div class="w-12 h-12 mx-auto mb-3 bg-success/10 rounded-full flex items-center justify-center group-hover:bg-success/20 transition">
                         <span class="text-xl">⚙️</span>
                     </div>
                     <h3 class="font-semibold text-text mb-1">Meu Perfil</h3>
-                    <p class="text-sm text-gray-500">Atualize informações da sua empresa e contato.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Atualize informações da sua empresa e contato.</p>
                     <span class="mt-3 inline-block text-xs font-semibold text-primary">Editar perfil →</span>
                 </a>
             </div>

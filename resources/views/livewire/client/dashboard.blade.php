@@ -20,7 +20,7 @@
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-30"
+                        class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 py-1 z-30"
                         style="display: none;">
                         <a href="/planejar"
                             class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-bg transition rounded-t-xl">
@@ -30,7 +30,7 @@
                                 <p class="text-xs text-gray-400 mt-0.5">Assistente de IA</p>
                             </div>
                         </a>
-                        <div class="my-1 border-t border-gray-100"></div>
+                        <div class="my-1 border-t border-gray-100 dark:border-gray-700"></div>
                         <a href="/meus-eventos/criar"
                             class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-bg transition rounded-b-xl">
                             <span class="text-xl">✏️</span>
@@ -45,36 +45,36 @@
 
             {{-- Stats --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-                <div class="bg-white rounded-card p-6 shadow-sm">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                             <span class="text-xl">🎉</span>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-text">{{ $events->count() }}</p>
-                            <p class="text-sm text-gray-500">Meus eventos</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Meus eventos</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-card p-6 shadow-sm">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
                             <span class="text-xl">📋</span>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-text">{{ $events->where('event_date', '>=', now())->count() }}</p>
-                            <p class="text-sm text-gray-500">Próximos eventos</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Próximos eventos</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-card p-6 shadow-sm">
+                <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center">
                             <span class="text-xl">✅</span>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-text">{{ $events->where('event_date', '<', now())->count() }}</p>
-                            <p class="text-sm text-gray-500">Realizados</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Realizados</p>
                         </div>
                     </div>
                 </div>
@@ -97,13 +97,13 @@
             @endif
 
             {{-- Events List --}}
-            <div class="bg-white rounded-card shadow-sm overflow-hidden">
-                <div class="p-6 border-b border-gray-100">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-gray-100 dark:border-gray-700">
                     <h2 class="text-lg font-semibold text-text">Meus Eventos</h2>
                 </div>
                 @forelse($events as $event)
                     @php $page = $event->eventPage; @endphp
-                    <div class="p-5 border-b border-gray-50 hover:bg-bg/30 transition">
+                    <div class="p-5 border-b border-gray-50 dark:border-gray-700 hover:bg-bg/30 dark:hover:bg-gray-700/30 transition">
                         <div class="flex items-start justify-between gap-4">
                             {{-- Event info --}}
                             <div class="flex items-center gap-3 min-w-0">

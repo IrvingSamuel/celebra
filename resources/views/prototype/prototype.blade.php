@@ -288,24 +288,24 @@
             <div class="bg-bg rounded-card p-8">
                 <div class="flex flex-col items-center gap-4">
                     {{-- Level 1 --}}
-                    <div class="px-6 py-3 bg-primary text-white font-bold rounded-btn text-sm">🏠 Home</div>
+                    <div class="px-6 py-3 bg-primary text-white font-bold rounded-btn text-sm">Home</div>
                     <svg class="w-4 h-8" viewBox="0 0 16 32"><line x1="8" y1="0" x2="8" y2="32" stroke="#49516F" stroke-width="2"/></svg>
 
                     {{-- Level 2 --}}
                     <div class="flex items-center gap-4">
-                        <div class="px-4 py-2 bg-secondary text-white rounded-btn text-xs font-medium">💒 Espaços</div>
-                        <div class="px-4 py-2 bg-secondary text-white rounded-btn text-xs font-medium">📋 Serviços</div>
-                        <div class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-btn text-xs font-medium">✨ Planejar</div>
-                        <div class="px-4 py-2 border border-primary text-primary rounded-btn text-xs font-medium">📝 Cadastro</div>
-                        <div class="px-4 py-2 border border-secondary text-secondary rounded-btn text-xs font-medium">🔑 Login</div>
+                        <div class="px-4 py-2 bg-secondary text-white rounded-btn text-xs font-medium">Espaços</div>
+                        <div class="px-4 py-2 bg-secondary text-white rounded-btn text-xs font-medium">Serviços</div>
+                        <div class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-btn text-xs font-medium">Planejar</div>
+                        <div class="px-4 py-2 border border-primary text-primary rounded-btn text-xs font-medium">Cadastro</div>
+                        <div class="px-4 py-2 border border-secondary text-secondary rounded-btn text-xs font-medium">Login</div>
                     </div>
                     <svg class="w-4 h-8" viewBox="0 0 16 32"><line x1="8" y1="0" x2="8" y2="32" stroke="#49516F" stroke-width="2"/></svg>
 
                     {{-- Level 3 --}}
                     <div class="flex items-center gap-4">
-                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">📄 Detalhe Espaço</div>
-                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">📊 Dashboard</div>
-                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">🎁 Presentes</div>
+                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">Detalhe Espaço</div>
+                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">Dashboard</div>
+                        <div class="px-4 py-2 bg-white border border-gray-200 rounded-btn text-xs font-medium text-text">Presentes</div>
                     </div>
                 </div>
 

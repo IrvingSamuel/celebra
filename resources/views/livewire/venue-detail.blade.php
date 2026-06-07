@@ -38,9 +38,9 @@
                     @endif
 
                     {{-- Description --}}
-                    <div class="bg-white rounded-card p-6 shadow-sm mb-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm mb-6">
                         <h1 class="text-2xl font-bold text-text mb-2">{{ $venue->name }}</h1>
-                        <p class="text-gray-500 flex items-center gap-1 mb-4">
+                        <p class="text-gray-500 dark:text-gray-400 flex items-center gap-1 mb-4">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             {{ $venue->address }} — {{ $venue->city }}, {{ $venue->state }}
                         </p>
@@ -48,7 +48,7 @@
                     </div>
 
                     {{-- Features --}}
-                    <div class="bg-white rounded-card p-6 shadow-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm">
                         <h2 class="text-lg font-semibold text-text mb-4">Informações</h2>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                             <div class="flex items-center gap-3 p-3 bg-bg rounded-btn">
@@ -78,7 +78,7 @@
 
                 {{-- Sidebar --}}
                 <div>
-                    <div class="bg-white rounded-card p-6 shadow-sm sticky top-24">
+                    <div class="bg-white dark:bg-gray-800 rounded-card p-6 shadow-sm sticky top-24">
                         <div class="text-center mb-6">
                             <p class="text-xs text-gray-400 mb-0.5">a partir de</p>
                             <p class="text-3xl font-bold text-primary">R$ {{ number_format($venue->price, 0, ',', '.') }}</p>
@@ -93,12 +93,12 @@
                             </a>
                         </div>
 
-                        <div class="border-t border-gray-100 mt-6 pt-6">
-                            <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <div class="border-t border-gray-100 dark:border-gray-700 mt-6 pt-6">
+                            <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                                 <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 Resposta rápida
                             </div>
-                            <div class="flex items-center gap-2 text-sm text-gray-500 mt-2">
+                            <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mt-2">
                                 <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 Pagamento seguro
                             </div>

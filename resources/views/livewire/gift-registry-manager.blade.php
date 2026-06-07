@@ -5,7 +5,7 @@
             {{-- Header --}}
             <div class="flex items-center gap-4 mb-8">
                 <a href="/dashboard"
-                   class="p-2 text-gray-400 hover:text-text hover:bg-white rounded-full transition">
+                   class="p-2 text-gray-400 hover:text-text hover:bg-white dark:hover:bg-gray-700 rounded-full transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -15,7 +15,7 @@
                     <p class="text-sm text-gray-500 mt-0.5">{{ $event->title }}</p>
                 </div>
                 <a href="/presentes/{{ $event->slug }}" target="_blank"
-                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition shrink-0">
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition shrink-0">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -24,16 +24,16 @@
             </div>
 
             {{-- URL Fetch Form --}}
-            <div class="bg-white rounded-card shadow-sm p-6 mb-6">
+            <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-6">
                 <h2 class="text-base font-semibold text-text mb-1">Adicionar presente</h2>
-                <p class="text-sm text-gray-500 mb-4">Cole o link do produto e preencheremos os dados automaticamente.</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Cole o link do produto e preencheremos os dados automaticamente.</p>
 
                 <div class="flex gap-2">
                     <input
                         type="url"
                         wire:model="productUrl"
                         placeholder="https://www.amazon.com.br/..."
-                        class="flex-1 text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+                        class="flex-1 text-sm border border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
                         wire:keydown.enter="fetchFromUrl"
                         @keydown.enter.prevent="$wire.fetchFromUrl()"
                     />
@@ -69,12 +69,12 @@
 
             {{-- Item Form --}}
             @if($showForm)
-                <div class="bg-white rounded-card shadow-sm p-6 mb-6 border-l-4 border-primary">
+                <div class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-6 mb-6 border-l-4 border-primary">
                     <div class="flex items-center justify-between mb-5">
                         <h3 class="font-semibold text-text">
                             {{ $editingItemId ? 'Editar presente' : 'Novo presente' }}
                         </h3>
-                        <button wire:click="cancelForm" class="p-1.5 text-gray-400 hover:text-text rounded-full hover:bg-gray-100 transition">
+                            <button wire:click="cancelForm" class="p-1.5 text-gray-400 hover:text-text rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
@@ -86,11 +86,11 @@
                         {{-- Image preview --}}
                         <div class="sm:col-span-1">
                             <label class="block text-xs font-medium text-gray-500 mb-1.5">Imagem</label>
-                            <div class="aspect-square rounded-xl overflow-hidden bg-gray-50 border border-gray-200 flex items-center justify-center">
+                            <div class="aspect-square rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 flex items-center justify-center">
                                 @if($image)
                                     <img src="{{ $image }}" alt="Preview" class="w-full h-full object-cover">
                                 @else
-                                    <span class="text-4xl">🎁</span>
+                                    <span class="text-4xl"></span>
                                 @endif
                             </div>
                             <input
@@ -214,7 +214,7 @@
                                 @if($item->image)
                                     <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover">
                                 @else
-                                    <div class="w-full h-full flex items-center justify-center text-2xl">🎁</div>
+                                    <div class="w-full h-full flex items-center justify-center text-2xl"></div>
                                 @endif
                             </div>
 
@@ -251,7 +251,7 @@
                                     @if($item->activePledges->count() > 0)
                                         <button @click="showPledges = !showPledges"
                                                 class="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition">
-                                            🎁 {{ $item->activePledges->count() }} presenteador{{ $item->activePledges->count() > 1 ? 'es' : '' }}
+                                            {{ $item->activePledges->count() }} presenteador{{ $item->activePledges->count() > 1 ? 'es' : '' }}
                                             <svg class="w-3 h-3 transition-transform" :class="showPledges ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                             </svg>
@@ -306,7 +306,7 @@
                     </div>
                 @empty
                     <div class="p-12 text-center">
-                        <span class="text-5xl block mb-3">🎁</span>
+                        <span class="text-5xl block mb-3">✦</span>
                         <p class="text-gray-500 text-sm">Nenhum presente cadastrado ainda.</p>
                         <p class="text-gray-400 text-xs mt-1">Cole o link de um produto acima para começar.</p>
                     </div>

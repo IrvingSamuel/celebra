@@ -18,13 +18,13 @@
                 </div>
             @endif
 
-            <form wire:submit="save" class="bg-white rounded-card shadow-sm p-8 space-y-6">
+            <form wire:submit="save" class="bg-white dark:bg-gray-800 rounded-card shadow-sm p-8 space-y-6">
 
                 {{-- Company Name --}}
                 <div>
                     <label class="block text-sm font-medium text-text mb-1.5">Nome da empresa <span class="text-red-500">*</span></label>
                     <input wire:model="company_name" type="text" placeholder="Ex: Studio Momento Perfeito"
-                           class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('company_name') border-red-400 @enderror">
+                           class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('company_name') border-red-400 @enderror">
                     @error('company_name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
@@ -32,7 +32,7 @@
                 <div>
                     <label class="block text-sm font-medium text-text mb-1.5">Descrição</label>
                     <textarea wire:model="description" rows="4" placeholder="Conte um pouco sobre sua empresa, experiência e diferenciais..."
-                              class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
+                              class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition resize-none @error('description') border-red-400 @enderror"></textarea>
                     @error('description') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
@@ -40,7 +40,7 @@
                 <div>
                     <label class="block text-sm font-medium text-text mb-1.5">Telefone / WhatsApp</label>
                     <input wire:model="phone" type="text" placeholder="(11) 99999-9999"
-                           class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('phone') border-red-400 @enderror">
+                           class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('phone') border-red-400 @enderror">
                     @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
@@ -49,13 +49,13 @@
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-text mb-1.5">Cidade</label>
                         <input wire:model="city" type="text" placeholder="São Paulo"
-                               class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('city') border-red-400 @enderror">
+                               class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition @error('city') border-red-400 @enderror">
                         @error('city') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-text mb-1.5">UF</label>
                         <input wire:model="state" type="text" placeholder="SP" maxlength="2"
-                               class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition uppercase @error('state') border-red-400 @enderror">
+                               class="w-full rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition uppercase @error('state') border-red-400 @enderror">
                         @error('state') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
                 </div>
