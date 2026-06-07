@@ -1,5 +1,6 @@
 import './bootstrap';
 import Swal from 'sweetalert2';
+import { initHomeAnimations } from './home-animations';
 
 // ============================================
 // Gerenciamento de Tema (Dark Mode)
@@ -132,6 +133,8 @@ window.SwalTheme = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+    initHomeAnimations();
+
     // Procura os botões que você colocou no HTML pelos IDs deles
     const btnAumentar = document.getElementById('btn-aumentar');
     const btnDiminuir = document.getElementById('btn-diminuir');

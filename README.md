@@ -7,11 +7,16 @@
 <h4 align="center">Plataforma completa de planejamento de eventos — casamentos, formaturas, aniversários e muito mais.</h4>
 
 <p align="center">
+  <a href="https://eventos.eflow.space/"><strong>eventos.eflow.space</strong></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8.3">
   <img src="https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel 13">
   <img src="https://img.shields.io/badge/Livewire-4-4E56A6?style=flat-square&logo=livewire&logoColor=white" alt="Livewire 4">
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind 4">
   <img src="https://img.shields.io/badge/Gemini-2.0_Flash-4285F4?style=flat-square&logo=google&logoColor=white" alt="Gemini AI">
+  <img src="https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP">
   <img src="https://img.shields.io/badge/status-em_desenvolvimento-yellow?style=flat-square" alt="Status">
 </p>
 
@@ -21,6 +26,11 @@
   <a href="#-tecnologias">Tecnologias</a> •
   <a href="#-arquitetura">Arquitetura</a> •
   <a href="#-como-rodar">Como Rodar</a> •
+  <a href="#-acessibilidade">Acessibilidade</a> •
+  <a href="#-animações-gsap">Animações</a> •
+  <a href="#-equipe">Equipe</a> •
+  <a href="#-deploy">Deploy</a> •
+  <a href="https://eventos.eflow.space/">Site</a> •
   <a href="#-variáveis-de-ambiente">Variáveis de Ambiente</a> •
   <a href="#-banco-de-dados">Banco de Dados</a> •
   <a href="#-estrutura-do-projeto">Estrutura</a>
@@ -34,7 +44,7 @@
 
 A plataforma oferece desde descoberta de espaços e serviços até uma **assistente de IA integrada (Celi)**, editor visual de página do evento, lista de presentes com scraping automático e confirmação de presença — tudo em tempo real com uma experiência reativa e moderna.
 
-> **Demo ao vivo:** [eventos.eflow.space](https://eventos.eflow.space)
+> **Demo ao vivo:** [https://eventos.eflow.space/](https://eventos.eflow.space/)
 
 ---
 
@@ -84,6 +94,7 @@ A plataforma oferece desde descoberta de espaços e serviços até uma **assiste
 - **[Tailwind CSS 4](https://tailwindcss.com/)** — estilização utilitária
 - **[Vite 8](https://vitejs.dev/)** — bundler e hot-reload
 - **[SweetAlert2](https://sweetalert2.github.io/)** — modais e alertas elegantes
+- **[GSAP + ScrollTrigger](https://gsap.com/)** — animações e efeitos de rolagem na landing page
 - **[Alpine.js](https://alpinejs.dev/)** — interatividade leve no front (embutido via Livewire)
 
 ### Infraestrutura & Integrações
@@ -142,11 +153,45 @@ Usuário → Livewire Component → GeminiService
      (histórico salvo)
 ```
 
-### Acessibilidade e VLibras
+### Acessibilidade
 
-- **VLibras:** integrado no front-end global via `resources/js/app.js` para páginas com `lang="pt"`.
-- **Chat Celi:** mensagens usam `role="log"`, `aria-live="polite"` e `aria-atomic="false"` para melhorar compatibilidade com leitores de tela e o widget de Libras.
-- **Teste recomendado:** abra a página com o site em português, verifique se o botão de VLibras aparece e se a Celi pode ser usada normalmente.
+O projeto implementa recursos de acessibilidade em conformidade com os requisitos da disciplina de IHC:
+
+| Recurso | Descrição | Onde está |
+|---|---|---|
+| **VLibras** | Widget oficial do governo para tradução de conteúdo em Libras | [`resources/views/layouts/app.blade.php`](resources/views/layouts/app.blade.php) |
+| **Alto contraste** | Toggle persistente via `data-contrast` + `localStorage`, com `aria-pressed` e `aria-label` | [`resources/js/app.js`](resources/js/app.js) + navbar |
+| **Controle de fonte** | Botões A+ / A- / Normal para ajustar o tamanho da fonte globalmente | [`resources/js/app.js`](resources/js/app.js) + navbar |
+| **Chat Celi** | Mensagens com `role="log"`, `aria-live="polite"` e `aria-atomic="false"` | [`resources/views/livewire/celi-chat.blade.php`](resources/views/livewire/celi-chat.blade.php) |
+
+**Teste recomendado:** abra a homepage, verifique o botão do VLibras, teste o toggle de alto contraste e os botões de fonte. Ative "Reduzir movimento" no sistema operacional para confirmar que as animações GSAP são desabilitadas.
+
+---
+
+### Animações (GSAP + ScrollTrigger)
+
+A homepage utiliza **[GSAP](https://gsap.com/)** com o plugin **[ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)** para animações sutis de entrada na landing page.
+
+**Por que GSAP?**
+- Controle preciso de timelines e sequências de animação
+- ScrollTrigger nativo para efeitos ligados à rolagem (reveal on scroll)
+- Performance otimizada animando apenas `opacity`, `transform` (x, y, scale)
+- Framework-agnostic — funciona perfeitamente com Laravel + Livewire + Alpine.js
+
+**Arquivo principal:** [`resources/js/home-animations.js`](resources/js/home-animations.js)
+
+**Seções animadas:**
+
+| Seção | Tipo | Efeito |
+|---|---|---|
+| Hero | Timeline on load | Fade-up do título, subtítulo, busca, stats e carousel |
+| Tipos de Evento | ScrollTrigger batch | Cards aparecem com stagger ao entrar na viewport |
+| Como Funciona | ScrollTrigger batch | 3 passos com fade-up sequencial |
+| Serviços | ScrollTrigger batch | Cards de categoria com reveal |
+| Espaços em Destaque | ScrollTrigger batch | Cards de venues com fade-up |
+| CTA | ScrollTrigger | Fade + leve scale no botão "Planejar com a Celi" |
+
+**Acessibilidade nas animações:** `gsap.matchMedia()` respeita `prefers-reduced-motion: reduce` — quando ativo, nenhuma animação é executada e o conteúdo permanece visível imediatamente.
 
 ---
 
@@ -427,6 +472,20 @@ php artisan test
 
 ---
 
+## Equipe
+
+Projeto desenvolvido na disciplina de **Interface Humano-Computador (IHC) — 2026**.
+
+| Integrante | Responsabilidades |
+|---|---|
+| **Irving Samuel** | Full-stack, IA Celi (Gemini), deploy, documentação |
+| **George Luis** | Full-stack, backend Laravel/Livewire |
+| **João Gabryel** | Frontend, UI, animações GSAP, acessibilidade visual |
+
+**Repositório:** [github.com/IrvingSamuel/celebra](https://github.com/IrvingSamuel/celebra)
+
+---
+
 ## Deploy
 
 ```bash
@@ -444,6 +503,8 @@ php artisan view:cache
 # 4. Rodar migrations
 php artisan migrate --force
 ```
+
+**Produção:** [https://eventos.eflow.space/](https://eventos.eflow.space/)
 
 ---
 

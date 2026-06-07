@@ -1,18 +1,18 @@
-<div>
+<div data-home-page>
     {{-- Hero Section --}}
     <section class="relative bg-gradient-to-br from-pink-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h1 class="text-4xl lg:text-5xl font-bold text-text leading-tight">
+                    <h1 data-hero-title class="text-4xl lg:text-5xl font-bold text-text leading-tight">
                         Planeje o <span class="text-primary">evento</span> dos seus sonhos
                     </h1>
-                    <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
+                    <p data-hero-subtitle class="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
                         Casamentos, formaturas, aniversários e muito mais. Encontre os melhores espaços, fornecedores e serviços em um só lugar.
                     </p>
 
                     {{-- Search Bar --}}
-                    <div class="mt-8 flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg p-2 max-w-lg">
+                    <div data-hero-search class="mt-8 flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg p-2 max-w-lg">
                         <div class="flex-1 flex items-center gap-2 px-4">
                             <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -32,15 +32,15 @@
 
                     {{-- Quick stats --}}
                     <div class="mt-8 flex gap-8">
-                        <div>
+                        <div data-hero-stat>
                             <span class="text-2xl font-bold text-text">500+</span>
                             <p class="text-xs text-gray-500">Fornecedores</p>
                         </div>
-                        <div>
+                        <div data-hero-stat>
                             <span class="text-2xl font-bold text-text">1.200+</span>
                             <p class="text-xs text-gray-500">Eventos realizados</p>
                         </div>
-                        <div>
+                        <div data-hero-stat>
                             <span class="text-2xl font-bold text-text">98%</span>
                             <p class="text-xs text-gray-500">Satisfação</p>
                         </div>
@@ -48,7 +48,7 @@
                 </div>
 
                 {{-- Hero Carousel --}}
-                <div class="relative" x-data="{
+                <div data-hero-carousel class="relative" x-data="{
                     current: 0,
                     images: {{ Js::from($carouselImages) }},
                     init() {
@@ -90,14 +90,14 @@
     @endphp
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div data-section-header class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-text">Que tipo de evento você quer planejar?</h2>
                 <p class="mt-2 text-gray-500">Escolha o tipo e encontre tudo que precisa</p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div data-event-grid class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
                 @forelse($eventTypes as $eventType)
-                    <a href="/espacos" class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-all duration-300">
+                    <a href="/espacos" data-event-card class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-shadow duration-300">
                         <img src="/{{ $eventTypeImages[$eventType->name] ?? 'images/venues/espaco-gardens.jpg' }}" alt="{{ $eventType->name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <span class="relative text-sm font-semibold text-white text-center drop-shadow-lg">{{ $eventType->name }}</span>
@@ -111,7 +111,7 @@
                         ['name' => 'Confraternização'],
                         ['name' => 'Conferência'],
                     ] as $cat)
-                        <div class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div data-event-card class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                             <img src="/{{ $eventTypeImages[$cat['name']] ?? 'images/venues/espaco-gardens.jpg' }}" alt="{{ $cat['name'] }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                             <span class="relative text-sm font-semibold text-white text-center drop-shadow-lg">{{ $cat['name'] }}</span>
@@ -125,27 +125,27 @@
     {{-- How It Works --}}
     <section class="py-16 bg-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div data-section-header class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-text">Como funciona</h2>
                 <p class="mt-2 text-gray-500">Três passos simples para o evento perfeito</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
+            <div data-step-grid class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div data-step-card class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('venues/jardim-imperial.jpg') }}" alt="Escolha" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-lg font-semibold text-text mb-2">1. Escolha</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Selecione o tipo de evento e explore espaços e serviços disponíveis.</p>
                 </div>
-                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
+                <div data-step-card class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('services/luxe-design-eventos.jpg') }}" alt="Planeje" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-lg font-semibold text-text mb-2">2. Planeje</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Use a Celi, nossa assistente IA, para receber recomendações personalizadas.</p>
                 </div>
-                <div class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
+                <div data-step-card class="text-center p-8 bg-white dark:bg-gray-800 rounded-card shadow-sm">
                     <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('minio')->url('venues/mansao-tropical.jpg') }}" alt="Celebre" class="w-full h-full object-cover">
                     </div>
@@ -168,7 +168,7 @@
     @endphp
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div data-section-header class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-text">Nossos Serviços</h2>
                 <p class="mt-2 text-gray-500">Tudo que você precisa em um só lugar</p>
             </div>
@@ -178,9 +178,9 @@
                 }
             </style>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 flex justify-center items-center">
+            <div data-service-grid class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 flex justify-center items-center">
                 @forelse($categories as $category)
-                    <a href="/servicos/{{ $category->slug }}" class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-all duration-300">
+                    <a href="/servicos/{{ $category->slug }}" data-service-card class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-shadow duration-300">
                         <img src="/{{ $categoryImages[$category->name] ?? 'images/services/luxe-design-eventos.jpg' }}" alt="{{ $category->name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-primary/80 group-hover:via-primary/40 group-hover:to-transparent transition-all duration-300"></div>
                         <span class="relative text-sm font-semibold text-white text-center drop-shadow-lg">{{ $category->name }}</span>
@@ -193,7 +193,7 @@
                         ['name' => 'Música'],
                         ['name' => 'Vestidos'],
                     ] as $cat)
-                        <div class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div data-service-card class="group relative flex flex-col items-center justify-end p-4 rounded-card overflow-hidden h-40 hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                             <img src="/{{ $categoryImages[$cat['name']] ?? 'images/services/luxe-design-eventos.jpg' }}" alt="{{ $cat['name'] }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-primary/80 group-hover:via-primary/40 group-hover:to-transparent transition-all duration-300"></div>
                             <span class="relative text-sm font-semibold text-white text-center drop-shadow-lg">{{ $cat['name'] }}</span>
@@ -207,7 +207,7 @@
     {{-- Featured Venues --}}
     <section class="py-16 bg-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-10">
+            <div data-section-header class="flex items-center justify-between mb-10">
                 <div>
                     <h2 class="text-3xl font-bold text-text">Espaços em Destaque</h2>
                     <p class="mt-2 text-gray-500">Os espaços mais bem avaliados</p>
@@ -218,9 +218,9 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div data-venue-grid class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @forelse($featuredVenues as $venue)
-                    <a href="/espacos/{{ $venue->slug }}" class="bg-white dark:bg-gray-800 rounded-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group block">
+                    <a href="/espacos/{{ $venue->slug }}" data-venue-card class="bg-white dark:bg-gray-800 rounded-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group block">
                         <div class="aspect-[4/3] bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden relative">
                             @if($venue->image_url)
                                 <img src="{{ $venue->image_url }}" alt="{{ $venue->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -275,7 +275,7 @@
 
     {{-- CTA Section --}}
     <section class="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div class="max-w-4xl mx-auto px-4 text-center">
+        <div data-cta-content class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl lg:text-4xl font-bold text-white">Pronto para planejar o seu evento?</h2>
             <p class="mt-4 text-white/80 text-lg">Converse com a Celi, nossa assistente IA, e receba recomendações personalizadas.</p>
             <a href="/planejar" class="mt-8 inline-flex items-center gap-2 bg-white text-primary font-semibold px-8 py-4 rounded-full hover:bg-gray-50 transition">
